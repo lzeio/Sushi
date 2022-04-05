@@ -148,9 +148,9 @@ public class PlayerMovement : MonoBehaviour {
 
         if (grounded)
         {
-            moveSpeed = 1000f;
-            if (crouching) moveSpeed = 500f;
-            if (sprinting) moveSpeed = 2000f;
+            moveSpeed = 500f;
+            if (crouching) moveSpeed = 200f;
+            if (sprinting) moveSpeed = 1000f;
         }
         //Apply forces to move player
        
