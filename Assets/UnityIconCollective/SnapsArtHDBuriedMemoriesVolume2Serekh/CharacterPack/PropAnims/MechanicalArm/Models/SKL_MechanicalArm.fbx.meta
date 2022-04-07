@@ -1,0 +1,187 @@
+fileFormatVersion: 2
+guid: 8a41062b6d0a1dc488d07c40eff3b427
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: MechanicalArm
+    100002: MechanicalArm_01
+    100004: MechanicalArm_011
+    100006: MechanicalArm_012
+    100008: MechanicalArm_013
+    100010: MechanicalArm_014
+    100012: MechanicalArm_015
+    100014: MechanicalArm_02
+    100016: MechanicalArm_03
+    100018: MechanicalArm_04
+    100020: MechanicalArm_05
+    100022: MechanicalArm_06
+    100024: MechanicalArm_07
+    100026: MechanicalArm_08
+    100028: MechanicalArm_09
+    100030: MechanicalArm_10
+    100032: Root
+    100034: //RootNode
+    100036: SA_MechanicalArm_01
+    100038: SA_MechanicalArm_02
+    100040: SA_MechanicalArm_03
+    100042: SA_MechanicalArm_04
+    100044: SA_MechanicalArm_05
+    100046: SA_MechanicalArm_06
+    100048: SA_MechanicalArm_07
+    100050: SA_MechanicalArm_08
+    100052: SA_MechanicalArm_09
+    100054: SA_MechanicalArm_Claw_01
+    100056: SA_MechanicalArm_Claw_02
+    400000: MechanicalArm
+    400002: MechanicalArm_01
+    400004: MechanicalArm_011
+    400006: MechanicalArm_012
+    400008: MechanicalArm_013
+    400010: MechanicalArm_014
+    400012: MechanicalArm_015
+    400014: MechanicalArm_02
+    400016: MechanicalArm_03
+    400018: MechanicalArm_04
+    400020: MechanicalArm_05
+    400022: MechanicalArm_06
+    400024: MechanicalArm_07
+    400026: MechanicalArm_08
+    400028: MechanicalArm_09
+    400030: MechanicalArm_10
+    400032: Root
+    400034: //RootNode
+    400036: SA_MechanicalArm_01
+    400038: SA_MechanicalArm_02
+    400040: SA_MechanicalArm_03
+    400042: SA_MechanicalArm_04
+    400044: SA_MechanicalArm_05
+    400046: SA_MechanicalArm_06
+    400048: SA_MechanicalArm_07
+    400050: SA_MechanicalArm_08
+    400052: SA_MechanicalArm_09
+    400054: SA_MechanicalArm_Claw_01
+    400056: SA_MechanicalArm_Claw_02
+    2100000: lambert2
+    2100002: Black iron1
+    2100004: Diikou1
+    2100006: Baking1
+    2100008: White iron1
+    2100010: Wire1
+    2100012: Huang Tie1
+    2100014: Metal_Pure_Silver
+    2100016: Decals_02
+    2100018: SA_MechanicalArm_Assembled
+    2100020: Steel
+    2100022: Paint_Red
+    2100024: Metal_Pure_Black
+    4300000: MechanicalArm
+    4300002: SA_MechanicalArm_01
+    4300004: SA_MechanicalArm_02
+    4300006: SA_MechanicalArm_03
+    4300008: SA_MechanicalArm_04
+    4300010: SA_MechanicalArm_05
+    4300012: SA_MechanicalArm_06
+    4300014: SA_MechanicalArm_07
+    4300016: SA_MechanicalArm_08
+    4300018: SA_MechanicalArm_09
+    4300020: SA_MechanicalArm_Claw_01
+    4300022: SA_MechanicalArm_Claw_02
+    9500000: //RootNode
+    13700000: MechanicalArm
+    13700002: SA_MechanicalArm_01
+    13700004: SA_MechanicalArm_02
+    13700006: SA_MechanicalArm_03
+    13700008: SA_MechanicalArm_04
+    13700010: SA_MechanicalArm_05
+    13700012: SA_MechanicalArm_06
+    13700014: SA_MechanicalArm_07
+    13700016: SA_MechanicalArm_08
+    13700018: SA_MechanicalArm_09
+    13700020: SA_MechanicalArm_Claw_01
+    13700022: SA_MechanicalArm_Claw_02
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
