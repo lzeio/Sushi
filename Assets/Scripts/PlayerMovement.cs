@@ -93,8 +93,8 @@ public class PlayerMovement : MonoBehaviour {
 
     private void StartCrouch() {
        
-        cp.radius = cp.radius / 2;
-        cp.height = cp.height / 2;
+       // cp.radius = cp.radius / 2;
+        cp.height = cp.height / 1.5f;
         if (rb.velocity.magnitude > 0.5f) {
             if (grounded) { 
                 rb.AddForce(orientation.transform.forward * slideForce);
@@ -103,8 +103,8 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void StopCrouch() {
-        cp.radius = cp.radius * 2;
-        cp.height = cp.height * 2;
+       // cp.radius = cp.radius * 2;
+        cp.height = cp.height * 1.5f;
         //transform.localScale = playerScale;
         //transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
     }
@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour {
     private void Movement() {
     
         //Extra gravity
-        rb.AddForce(Vector3.down * Time.deltaTime * 100);
+        rb.AddForce(Vector3.down * Time.deltaTime * 75);
         
         //Find actual velocity relative to where player is looking
         Vector2 mag = FindVelRelativeToLook();
@@ -141,8 +141,8 @@ public class PlayerMovement : MonoBehaviour {
         
         // Movement in air
         if (!grounded) {
-            multiplier = 0.01f;
-            multiplierV = 0.01f;
+            multiplier = 0.5f;
+            multiplierV = 0.5f;
         }
 
 

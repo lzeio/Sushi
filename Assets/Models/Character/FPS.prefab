@@ -69,6 +69,7 @@ GameObject:
   - component: {fileID: 6859967101877161334}
   - component: {fileID: 6859967101877161333}
   - component: {fileID: 6859967101877161332}
+  - component: {fileID: 4903563828351108052}
   - component: {fileID: 6859967101877161227}
   m_Layer: 0
   m_Name: FPS
@@ -124,6 +125,19 @@ CapsuleCollider:
   m_Height: 1.9242153
   m_Direction: 1
   m_Center: {x: 0, y: 0.9490826, z: 0}
+--- !u!135 &4903563828351108052
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6859967101877161226}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 1.75, z: 0}
 --- !u!114 &6859967101877161227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,7 +239,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1420233, y: 1}
+    m_SensorSize: {x: 1.3333334, y: 1}
     Iso: 200
     ShutterSpeed: 0.005
     Aperture: 16
@@ -336,46 +350,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6859967102722550258}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4125368799649110641 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -1841058918131551357, guid: 513d310df027e1949abcdc8a9ea447f4,
-    type: 3}
-  m_PrefabInstance: {fileID: 6859967102722550258}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &6859967101610373848
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4125368799649110641}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 1022625529149906712, guid: 75ef7fe76b90840409af42394ee58a3b, type: 3}
---- !u!95 &6859967101610373855
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4125368799649110641}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3fd65dab41886a34c8e3516eae8bfb81, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &6393359701984792089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 513d310df027e1949abcdc8a9ea447f4,
