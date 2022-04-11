@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour {
     public float jumpForce = 550f;
     //Input
     public float horizontal, vertical;
-    public bool jumping, sprinting, crouching;
+    public bool isJumping, isSprinting, isCrouching,isWalking;
     
     //Sliding
      Vector3 normalVector = Vector3.up;
@@ -80,21 +80,21 @@ public class PlayerMovement : MonoBehaviour {
     private void MyInput() {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-        jumping = Input.GetKey(KeyCode.Space);
-        crouching = Input.GetKey(KeyCode.C);
-        sprinting = Input.GetKey(KeyCode.LeftShift);
+        isJumping = Input.GetKey(KeyCode.Space);
+        isCrouching = Input.GetKey(KeyCode.C);
+        isSprinting = Input.GetKey(KeyCode.LeftShift);
       
         //Crouching
         if (Input.GetKeyDown(KeyCode.C))
             StartCrouch();
         if (Input.GetKeyUp(KeyCode.C))
             StopCrouch();
+       
     }
 
-    private void StartCrouch() {
-       
-        cp.radius = cp.radius / 2;
-        cp.height = cp.height / 2;
+    private void StartCrouch() 
+    {
+        cp.height = cp.height / 1.5f;
         if (rb.velocity.magnitude > 0.5f) {
             if (grounded) { 
                 rb.AddForce(orientation.transform.forward * slideForce);
@@ -102,17 +102,15 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    private void StopCrouch() {
-        cp.radius = cp.radius * 2;
-        cp.height = cp.height * 2;
-        //transform.localScale = playerScale;
-        //transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+    private void StopCrouch() 
+    {
+        cp.height = cp.height * 1.5f;
     }
 
     private void Movement() {
     
         //Extra gravity
-        rb.AddForce(Vector3.down * Time.deltaTime * 100);
+        rb.AddForce(Vector3.down * Time.deltaTime * 75);
         
         //Find actual velocity relative to where player is looking
         Vector2 mag = FindVelRelativeToLook();
@@ -122,7 +120,7 @@ public class PlayerMovement : MonoBehaviour {
         CounterMovement(horizontal, vertical, mag);
         
         //If holding jump && ready to jump, then jump
-        if (readyToJump && jumping) Jump();
+        if (readyToJump && isJumping) Jump();
 
         //Set max speed
         float maxSpeed = this.maxSpeed;
@@ -141,31 +139,33 @@ public class PlayerMovement : MonoBehaviour {
         
         // Movement in air
         if (!grounded) {
-            multiplier = 0.01f;
-            multiplierV = 0.01f;
+            multiplier = 0.5f;
+            multiplierV = 0.5f;
         }
 
 
         if (grounded)
         {
             moveSpeed = 500f;
-            if (crouching) moveSpeed = 200f;
-            if (sprinting) moveSpeed = 1000f;
+            if (isCrouching) moveSpeed = 200f;
+            if (isSprinting) moveSpeed = 1000f;
         }
         //Apply forces to move player
        
-
         rb.AddForce(orientation.transform.forward * vertical * moveSpeed * Time.deltaTime * multiplier * multiplierV); ;
         rb.AddForce(orientation.transform.right * horizontal * moveSpeed * Time.deltaTime * multiplier);
+        if(rb.velocity.magnitude>0)
+        {
+            isWalking = true;
+        }
     }
 
     private void Jump() {
-
-        Debug.Log("Jump");
+        
         if (grounded && readyToJump) {
            
             readyToJump = false;
-            if(crouching)
+            if(isCrouching)
             {
                     //Add Crouch forces
                 rb.AddForce(Vector2.up * crouchJump * 1.5f);
@@ -221,10 +221,10 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void CounterMovement(float x, float y, Vector2 mag) {
-        if (!grounded || jumping) return;
+        if (!grounded || isJumping) return;
 
         //Slow down sliding
-        if (crouching)
+        if (isCrouching)
         {
             rb.AddForce(moveSpeed * Time.deltaTime * -rb.velocity.normalized * slideCounterMovement);
             return;
