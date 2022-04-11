@@ -21,10 +21,11 @@ public class KillerKirin : MonoBehaviour
     {
         if (isAware)
         {
-            //Chase Player
+            this.gameObject.SetActive(false);
         }
         else
         {
+            this.gameObject.SetActive(true);
             SearchForPlayer();
         }
     }
@@ -45,4 +46,23 @@ public class KillerKirin : MonoBehaviour
     {
         isAware = true;
     }
+
+    // both functions to be declared in player movement since they are player dependent
+    void OnShoot()
+    {
+        //take an audio source
+        //Take an array colliders and do overlapsphere just like for grenade can use layer mask
+        //then call onaware() that's it for every collider in radius
+    }
+
+    void OntriggerEnter()
+    {
+        //check for zombie tag
+
+        //and change the radius for sprint and walk
+        
+    }
 }
+
+
+

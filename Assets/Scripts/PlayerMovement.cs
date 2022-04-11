@@ -53,10 +53,14 @@ public class PlayerMovement : MonoBehaviour {
     public static PlayerMovement _mInstance;
     public CapsuleCollider cp;
 
+
+    //Animator 
+    public Animator anim;
     void Awake() {
         _mInstance = this;
         rb = GetComponent<Rigidbody>();
         cp = GetComponent<CapsuleCollider>();
+        anim = GetComponentInChildren   <Animator>();
     }
     
     void Start() {
@@ -94,6 +98,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void StartCrouch() 
     {
+        anim.SetBool("Crouch", true);
         cp.height = cp.height / 1.5f;
         if (rb.velocity.magnitude > 0.5f) {
             if (grounded) { 
@@ -104,6 +109,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void StopCrouch() 
     {
+        anim.SetBool("Sprint", true);
         cp.height = cp.height * 1.5f;
     }
 
