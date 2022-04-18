@@ -7,8 +7,7 @@ using TMPro;
 [CreateAssetMenu(fileName ="Gun",menuName ="GunSystem")]
 public class GunData : ScriptableObject
 {
-    [Header("GunAttributes")]
-    //Gun stats
+    [Header("Gun Data")]
     public int damage;
     public float timeBetweenShooting, spreadX, spreadY, range, reloadTime, timeBetweenShots;
     public int magazineSize, totalMags, bulletsPerTap;
@@ -16,22 +15,9 @@ public class GunData : ScriptableObject
     public bool allowButtonHold;
     public int bulletsLeft, bulletsShot;
 
-    //Reference
-    public Camera fpsCam;
-    public Transform attackPoint;
-    public RaycastHit rayHit;
-    public LayerMask whatIsEnemy;
-
-    //Graphic
-    public GameObject muzzleFlash, bulletHoleGraphic;
-    public TextMeshProUGUI text;
-    public static GunSystem gsInstance;
 
 
-    [Header("Recoil")]
-    public Transform recoilPosition;
-    public Transform rotationPoint;
-
+    [Header("Recoil Data")]
     public float positionalRecoilSpeed;// = 8f;
     public float rotationalRecoilSpeed;// = 8f;
 
@@ -42,4 +28,8 @@ public class GunData : ScriptableObject
     public Vector3 recoilKickBack;// = new Vector3(.015f, 0f, -0.2f);
 
     public float gunSoundIntensity;
+
+    public Vector3 rotationalRecoil, positionalRecoil, rot;
+
+
 }

@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour {
     public float sensMultiplier = 1f;
 
     //Movement
-    public float moveSpeed;// = 2500f;
+    public float moveSpeed;
     public float maxSpeed = 35;
     public bool grounded;
     public LayerMask whatIsGround;
@@ -53,20 +53,15 @@ public class PlayerMovement : MonoBehaviour {
     public static PlayerMovement _mInstance;
     public CapsuleCollider cp;
 
-
-    //Animator 
-    public Animator anim;
     void Awake() {
         _mInstance = this;
         rb = GetComponent<Rigidbody>();
         cp = GetComponent<CapsuleCollider>();
-        anim = GetComponentInChildren   <Animator>();
     }
     
     void Start() {
         playerScale =  transform.localScale;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+       
     }
 
     
@@ -98,7 +93,6 @@ public class PlayerMovement : MonoBehaviour {
 
     private void StartCrouch() 
     {
-        anim.SetBool("Crouch", true);
         cp.height = cp.height / 1.5f;
         if (rb.velocity.magnitude > 0.5f) {
             if (grounded) { 
@@ -109,7 +103,6 @@ public class PlayerMovement : MonoBehaviour {
 
     private void StopCrouch() 
     {
-        anim.SetBool("Sprint", true);
         cp.height = cp.height * 1.5f;
     }
 

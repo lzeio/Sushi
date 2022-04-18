@@ -2,59 +2,82 @@ using UnityEngine;
 using TMPro;
 public class GunSystem : MonoBehaviour
 {
+    [SerializeField] private GunData gSO;
 
+    
+
+    //Reference
+    public Camera fpsCam;
+    public Transform attackPoint;
+    public RaycastHit rayHit;
+    public LayerMask whatIsEnemy;
+
+    //Graphic
+    //public GameObject muzzleFlash, bulletHoleGraphic;
+   // public TextMeshProUGUI text;
+    public static GunSystem gsInstance;
+
+
+    [Header("Recoil Data")]
+    public Transform recoilPosition;
+    public Transform rotationPoint;
     //bools 
     bool shooting, readyToShoot, reloading;
     //Reference
 
     //Graphics
-    public GameObject muzzleFlash, bulletHoleGraphic;
-    public TextMeshProUGUI text;
-    public static GunSystem gsInstance;
+    //public GameObject flash, bulletHoleGraphic;
+    //public TextMeshProUGUI txt;
+    //public static GunSystem Instance;
 
-    Vector3 rotationalRecoil, positionalRecoil, rot;
+    
+    
 
-
-    public GunData gun;
+   // public GunData gun;
 
     private void Awake()
     {
-        gun.bulletsLeft = gun.magazineSize;
-        gun.totalBullets = gun.magazineSize * gun.totalMags;
+        gSO.bulletsLeft = gSO.magazineSize;
+        gSO.totalBullets = gSO.magazineSize * gSO.totalMags;
         readyToShoot = true;
-        gsInstance = this;
+       // Instance = this;
+    }
+
+    private void Start()
+    {
+       
     }
     private void Update()
     {
         MyInput();
         //Ammo
-        text.SetText(gun.bulletsLeft + " / " + gun.totalBullets);
+       // txt.SetText(bulletsLeft + " / " + totalBullets);
     }
 
     private void FixedUpdate()
     {
-       
-        rotationalRecoil = Vector3.Lerp(rotationalRecoil, Vector3.zero, gun.rotationalReturnSpeed * Time.deltaTime);
-        positionalRecoil = Vector3.Lerp(positionalRecoil, Vector3.zero, gun.positionalReturnSpeed * Time.deltaTime);
 
-        gun.recoilPosition.localPosition = Vector3.Slerp(gun.recoilPosition.localPosition, positionalRecoil, gun.positionalRecoilSpeed * Time.fixedDeltaTime);
-        rot = Vector3.Slerp(rot, rotationalRecoil, gun.rotationalRecoilSpeed * Time.fixedDeltaTime);
-        gun.rotationPoint.localRotation = Quaternion.Euler(rot);
+        gSO.rotationalRecoil = Vector3.Lerp(gSO.rotationalRecoil, Vector3.zero, gSO.rotationalReturnSpeed * Time.deltaTime);
+        gSO.positionalRecoil = Vector3.Lerp(gSO.positionalRecoil, Vector3.zero, gSO.positionalReturnSpeed * Time.deltaTime);
+
+        recoilPosition.localPosition = Vector3.Slerp(recoilPosition.localPosition, gSO.positionalRecoil, gSO.positionalRecoilSpeed * Time.fixedDeltaTime);
+        gSO.rot = Vector3.Slerp(gSO.rot, gSO.rotationalRecoil, gSO.rotationalRecoilSpeed * Time.fixedDeltaTime);
+        rotationPoint.localRotation = Quaternion.Euler(gSO.rot);
 
     }
     private void MyInput()
     {
-        if (gun.allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
+        if (gSO.allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
        
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
         
-        if (Input.GetKeyDown(KeyCode.R) && gun.bulletsLeft / gun.totalMags < gun.magazineSize / gun.totalMags && !reloading) Reload();
+        if (Input.GetKeyDown(KeyCode.R) && gSO.bulletsLeft / gSO.totalMags < gSO.magazineSize / gSO.totalMags && !reloading) Reload();
 
         //Shoot
-        if (readyToShoot && shooting && !reloading && gun.bulletsLeft > 0)
+        if (readyToShoot && shooting && !reloading && gSO.bulletsLeft > 0)
         {
-            gun.bulletsShot = gun.bulletsPerTap;
+            gSO.bulletsShot = gSO.bulletsPerTap;
             Shoot();
             Recoil();
             CamRecoil.crInstance.CameraRecoil();
@@ -65,35 +88,35 @@ public class GunSystem : MonoBehaviour
         readyToShoot = false;
 
         //Spread
-        float x = Random.Range(-gun.spreadX, gun.spreadX);
-        float y = Random.Range(0, gun.spreadY);
+        float x = Random.Range(gSO.spreadX, gSO.spreadX);
+        float y = Random.Range(0, gSO.spreadY);
 
         //Calculate Direction with Spread
-        Vector3 direction = gun.fpsCam.transform.forward + new Vector3(x, y, 0);
+        Vector3 direction = fpsCam.transform.forward + new Vector3(x, y, 0);
 
         //RayCast
-        if (Physics.Raycast(gun.attackPoint.transform.position, direction, out gun.rayHit, gun.range, gun.whatIsEnemy))
+        if (Physics.Raycast(attackPoint.transform.position, direction, out rayHit, gSO.range, whatIsEnemy))
         {
-            Debug.Log(gun.rayHit.collider.name);
+            Debug.Log(rayHit.collider.name);
 
-            if (gun.rayHit.collider.CompareTag("Enemy"))
-                gun.rayHit.collider.GetComponent<Target>().TakeDamage(gun.damage);
+            if (rayHit.collider.CompareTag("Enemy"))
+                rayHit.collider.GetComponent<Target>().TakeDamage(gSO.damage);
         }
 
-        
-      
+
+
         //Impacts
-        Instantiate(bulletHoleGraphic, gun.rayHit.point, Quaternion.Euler(0, 180, 0));
-        GameObject mFlash=Instantiate(muzzleFlash, gun.attackPoint.position, Quaternion.identity);
-        Destroy(mFlash, .5f);
-        gun.bulletsLeft--;
-        gun.bulletsShot--;
+        //Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
+        //GameObject mFlash=Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
+        //Destroy(mFlash, .5f);
+        gSO.bulletsLeft--;
+        gSO.bulletsShot--;
         //totalBullets--;
         
-        Invoke("ResetShot", gun.timeBetweenShooting);
+        Invoke("ResetShot", gSO.timeBetweenShooting);
 
-        if (gun.bulletsShot > 0 && gun.bulletsLeft > 0)
-            Invoke("Shoot", gun.timeBetweenShots);
+        if (gSO.bulletsShot > 0 && gSO.bulletsLeft > 0)
+            Invoke("Shoot", gSO.timeBetweenShots);
     }
     private void ResetShot()
     {
@@ -102,20 +125,20 @@ public class GunSystem : MonoBehaviour
     private void Reload()
     {
         reloading = true;
-        Invoke("ReloadFinished", gun.reloadTime);
+        Invoke("ReloadFinished", gSO.reloadTime);
     }
     private void ReloadFinished()
     {
-        if (gun.totalBullets >= gun.magazineSize)
-            gun.bulletsLeft = gun.magazineSize;
-        else if(gun.totalBullets < gun.magazineSize)
-            gun.bulletsLeft = gun.totalBullets;
+        if (gSO.totalBullets >= gSO.magazineSize)
+            gSO.bulletsLeft = gSO.magazineSize;
+        else if(gSO.totalBullets < gSO.magazineSize)
+            gSO.bulletsLeft = gSO.totalBullets;
         reloading = false;
     }
 
     void Recoil()
     {
-        rotationalRecoil += new Vector3(-gun.recoilRotation.x, UnityEngine.Random.Range(-gun.recoilRotation.y, gun.recoilRotation.y), UnityEngine.Random.Range(-gun.recoilRotation.z, gun.recoilRotation.z));
-        positionalRecoil += new Vector3(UnityEngine.Random.Range(-gun.recoilKickBack.x, gun.recoilKickBack.x), UnityEngine.Random.Range(-gun.recoilKickBack.y, gun.recoilKickBack.y), gun.recoilKickBack.z);
+        gSO.rotationalRecoil += new Vector3(gSO.recoilRotation.x, UnityEngine.Random.Range(gSO.recoilRotation.y, gSO.recoilRotation.y), UnityEngine.Random.Range(gSO.recoilRotation.z, gSO.recoilRotation.z));
+        gSO.positionalRecoil += new Vector3(UnityEngine.Random.Range(gSO.recoilKickBack.x, gSO.recoilKickBack.x), UnityEngine.Random.Range(gSO.recoilKickBack.y, gSO.recoilKickBack.y), gSO.recoilKickBack.z);
     }
 }
