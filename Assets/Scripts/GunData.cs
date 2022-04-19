@@ -27,7 +27,7 @@ public class GunData : ScriptableObject
     public Vector3 recoilRotation;// = new Vector3(10, 4, 6);
     public Vector3 recoilKickBack;// = new Vector3(.015f, 0f, -0.2f);
 
-    public float gunSoundIntensity;
+    public float soundDetectionRadius;
 
     public Vector3 rotationalRecoil, positionalRecoil, rot;
 

@@ -30,8 +30,8 @@ public class GunSystem : MonoBehaviour
     //public TextMeshProUGUI txt;
     //public static GunSystem Instance;
 
-    
-    
+
+    private AudioSource aus;    
 
    // public GunData gun;
 
@@ -45,7 +45,7 @@ public class GunSystem : MonoBehaviour
 
     private void Start()
     {
-       
+        aus = GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -63,6 +63,12 @@ public class GunSystem : MonoBehaviour
         recoilPosition.localPosition = Vector3.Slerp(recoilPosition.localPosition, gSO.positionalRecoil, gSO.positionalRecoilSpeed * Time.fixedDeltaTime);
         gSO.rot = Vector3.Slerp(gSO.rot, gSO.rotationalRecoil, gSO.rotationalRecoilSpeed * Time.fixedDeltaTime);
         rotationPoint.localRotation = Quaternion.Euler(gSO.rot);
+
+
+        if (Input.GetMouseButton(0) && readyToShoot)
+        {
+            SoundDetection();
+        }
 
     }
     private void MyInput()
@@ -103,7 +109,7 @@ public class GunSystem : MonoBehaviour
                 rayHit.collider.GetComponent<Target>().TakeDamage(gSO.damage);
         }
 
-
+        //SoundDetection();
 
         //Impacts
         //Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
@@ -140,5 +146,24 @@ public class GunSystem : MonoBehaviour
     {
         gSO.rotationalRecoil += new Vector3(gSO.recoilRotation.x, UnityEngine.Random.Range(gSO.recoilRotation.y, gSO.recoilRotation.y), UnityEngine.Random.Range(gSO.recoilRotation.z, gSO.recoilRotation.z));
         gSO.positionalRecoil += new Vector3(UnityEngine.Random.Range(gSO.recoilKickBack.x, gSO.recoilKickBack.x), UnityEngine.Random.Range(gSO.recoilKickBack.y, gSO.recoilKickBack.y), gSO.recoilKickBack.z);
+    }
+
+
+   
+    public void SoundDetection()
+    {
+        //Play Gun Sound aus.playoneshot(
+
+        Collider[] zombies = Physics.OverlapSphere(transform.position, gSO.soundDetectionRadius, whatIsEnemy);
+        for (int i = 0; i < zombies.Length; i++)
+        {
+            zombies[i].GetComponent<Zombie>().OnAware();
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, gSO.soundDetectionRadius);
     }
 }
