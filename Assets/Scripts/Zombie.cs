@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 public class Zombie : MonoBehaviour
 {
-    public PlayerMovement player;
+    public PlayerController player;
     public bool isAware = false;
 
     private NavMeshAgent agent;

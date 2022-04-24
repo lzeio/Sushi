@@ -64,12 +64,6 @@ public class GunSystem : MonoBehaviour
         gSO.rot = Vector3.Slerp(gSO.rot, gSO.rotationalRecoil, gSO.rotationalRecoilSpeed * Time.fixedDeltaTime);
         rotationPoint.localRotation = Quaternion.Euler(gSO.rot);
 
-
-        if (Input.GetMouseButton(0) && readyToShoot)
-        {
-            SoundDetection();
-        }
-
     }
     private void MyInput()
     {
@@ -85,6 +79,7 @@ public class GunSystem : MonoBehaviour
         {
             gSO.bulletsShot = gSO.bulletsPerTap;
             Shoot();
+            Detection.dInstance.SoundDetection();
             Recoil();
             CamRecoil.crInstance.CameraRecoil();
         }
@@ -108,8 +103,6 @@ public class GunSystem : MonoBehaviour
             if (rayHit.collider.CompareTag("Enemy"))
                 rayHit.collider.GetComponent<Target>().TakeDamage(gSO.damage);
         }
-
-        //SoundDetection();
 
         //Impacts
         //Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
@@ -150,16 +143,7 @@ public class GunSystem : MonoBehaviour
 
 
    
-    public void SoundDetection()
-    {
-        //Play Gun Sound aus.playoneshot(
-
-        Collider[] zombies = Physics.OverlapSphere(transform.position, gSO.soundDetectionRadius, whatIsEnemy);
-        for (int i = 0; i < zombies.Length; i++)
-        {
-            zombies[i].GetComponent<Zombie>().OnAware();
-        }
-    }
+    
 
     private void OnDrawGizmos()
     {
