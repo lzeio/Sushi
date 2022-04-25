@@ -14,7 +14,7 @@ public class Zombie : MonoBehaviour
     bool walkPointSet;
     
     public float awarenessDistance;
-    
+    public float zombieSpeed;
 
     //Angle
     public float fov = 120f;
@@ -25,6 +25,7 @@ public class Zombie : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = zombieSpeed;
        
     }
 
@@ -84,14 +85,14 @@ public class Zombie : MonoBehaviour
 
     void Wandering()
     {
-        Debug.Log("Wandering");
+        Debug.Log("Wandering"); 
         if (!walkPointSet) WalkPoint();
 
         if (walkPointSet) agent.SetDestination(walkPoint);
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
-        if (distanceToWalkPoint.magnitude < 1)
+        if (distanceToWalkPoint.magnitude < 3f)
         {
             walkPointSet = false;
         }
