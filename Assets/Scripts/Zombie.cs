@@ -19,6 +19,8 @@ public class Zombie : MonoBehaviour
     //Angle
     public float fov = 120f;
 
+    private Animator animZom;
+
 
 
     // Start is called before the first frame updat
@@ -26,7 +28,8 @@ public class Zombie : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = zombieSpeed;
-       
+        animZom = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -89,6 +92,7 @@ public class Zombie : MonoBehaviour
         if (!walkPointSet) WalkPoint();
 
         if (walkPointSet) agent.SetDestination(walkPoint);
+        animZom.Play("Walk");
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
