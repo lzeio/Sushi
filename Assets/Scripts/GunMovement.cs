@@ -5,7 +5,9 @@ using UnityEngine;
 public class GunMovement : MonoBehaviour
 {
     [SerializeField]
-    Transform PlayerPos,camera;
+    private Transform playerPos;
+    [SerializeField]
+    private Transform playerCam;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +17,7 @@ public class GunMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         transform.position = PlayerPos.position;
-        transform.rotation = camera.rotation;
+         transform.position = playerPos.position;
+        transform.rotation = playerCam.rotation;
     }
 }

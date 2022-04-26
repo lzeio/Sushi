@@ -24,7 +24,7 @@ MonoBehaviour:
   bulletsPerTap: 2
   totalBullets: 10000
   allowButtonHold: 1
-  bulletsLeft: 4996
+  bulletsLeft: 4986
   bulletsShot: 0
   positionalRecoilSpeed: 10
   rotationalRecoilSpeed: 10
@@ -32,7 +32,7 @@ MonoBehaviour:
   rotationalReturnSpeed: 5
   recoilRotation: {x: -20, y: 8, z: 12}
   recoilKickBack: {x: 0.03, y: 0.12, z: -0.4}
-  soundDetectionRadius: 10
-  rotationalRecoil: {x: -3.3522725e-34, y: 1.3409072e-34, z: 2.011363e-34}
-  positionalRecoil: {x: 4e-45, y: 4e-45, z: -4e-45}
-  rot: {x: -6.0340908e-34, y: 2.413633e-34, z: 3.6204533e-34}
+  soundDetectionRadius: 15
+  rotationalRecoil: {x: -4.1759502e-17, y: 1.6703796e-17, z: 2.5055691e-17}
+  positionalRecoil: {x: 1.47425e-29, y: 5.897e-29, z: -1.9656672e-28}
+  rot: {x: -7.5167093e-17, y: 3.006683e-17, z: 4.510025e-17}

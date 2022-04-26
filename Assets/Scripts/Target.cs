@@ -29,9 +29,6 @@ public class Target : MonoBehaviour
         health -= damagee;
         if (health <= 0)
         {
-            EnemyAI._eiInstance.playerInAttackRange = false;
-            EnemyAI._eiInstance.playerInSightRange = false;
-
             anim.Play("Die");
             Invoke("Die", 2f);
         }    
@@ -39,6 +36,6 @@ public class Target : MonoBehaviour
 
     public void Die()
     {
-        gameObject.SetActive(false);
+        anim.enabled = false;
     }
 }

@@ -51,7 +51,9 @@ public class GunSystem : MonoBehaviour
     {
         MyInput();
         //Ammo
-       // txt.SetText(bulletsLeft + " / " + totalBullets);
+        // txt.SetText(bulletsLeft + " / " + totalBullets);
+
+        Debug.Log(gSO.damage);
     }
 
     private void FixedUpdate()
@@ -78,10 +80,10 @@ public class GunSystem : MonoBehaviour
         if (readyToShoot && shooting && !reloading && gSO.bulletsLeft > 0)
         {
             gSO.bulletsShot = gSO.bulletsPerTap;
-            Shoot();
-            Detection.dInstance.SoundDetection();
-            Recoil();
+            Shoot(); Recoil(); 
             CamRecoil.crInstance.CameraRecoil();
+            Detection.dInstance.SoundDetection();
+           
         }
     }
     private void Shoot()
@@ -98,10 +100,11 @@ public class GunSystem : MonoBehaviour
         //RayCast
         if (Physics.Raycast(attackPoint.transform.position, direction, out rayHit, gSO.range, whatIsEnemy))
         {
-            Debug.Log(rayHit.collider.name);
-
-            if (rayHit.collider.CompareTag("Enemy"))
-                rayHit.collider.GetComponent<Target>().TakeDamage(gSO.damage);
+            if (rayHit.transform.tag == "Zombie")
+            {
+                rayHit.transform.GetComponent<Zombie>().TakeDamage(gSO.damage);
+            }
+           
         }
 
         //Impacts
