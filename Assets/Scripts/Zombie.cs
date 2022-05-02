@@ -4,24 +4,18 @@ using UnityEngine;
 using UnityEngine.AI;
 public class Zombie : MonoBehaviour
 {
+
     public PlayerController player;
+    public ZombieData zSO;
     public bool isAware = false;
 
     private NavMeshAgent agent;
-    public float fov = 120f;
-    public float walkPointRange;
-    public Vector3 walkPoint;
+   
+    private Vector3 walkPoint;
     bool walkPointSet;
 
-    public float zomHealth;
-
-
-    public float awarenessDistance;
-    public float zombieWanderSpeed;
-    public float zombieChaseSpeed;
-
-    public Collider[] ragColliders;
-    public Rigidbody[] ragRigidbodies;
+    
+    
 
     //Angle
 
@@ -29,22 +23,21 @@ public class Zombie : MonoBehaviour
     private Animator animZom;
 
 
-
     // Start is called before the first frame updat
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animZom = GetComponent<Animator>();
-        ragColliders = GetComponentsInChildren<Collider>();
-        ragRigidbodies = GetComponentsInChildren<Rigidbody>();
-        foreach (Collider c in ragColliders)
+        zSO.ragColliders = GetComponentsInChildren<Collider>();
+        zSO.ragRigidbodies = GetComponentsInChildren<Rigidbody>();
+        foreach (Collider c in zSO.ragColliders)
         {
             if (!c.CompareTag("Zombie"))
             {
                 c.enabled = false;
             }
         }
-        foreach (Rigidbody r in ragRigidbodies)
+        foreach (Rigidbody r in zSO.ragRigidbodies)
         {
             if (!r.CompareTag("Zombie"))
             {
@@ -57,13 +50,14 @@ public class Zombie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (zomHealth <= 0)
+        if (zSO.zomHealth <= 0)
         {
             return;
         }
         if (isAware)
         {
             ChasePlayer();
+            Attack();
         }
         else
         {
@@ -81,9 +75,9 @@ public class Zombie : MonoBehaviour
 
     public void SearchForPlayer()
     {
-        if (Vector3.Angle(Vector3.forward, transform.InverseTransformPoint(player.transform.position)) <= fov / 2f)
+        if (Vector3.Angle(Vector3.forward, transform.InverseTransformPoint(player.transform.position)) <= zSO.FOV / 2f)
         {
-            if (Vector3.Distance(transform.position, player.transform.position) <= awarenessDistance)
+            if (Vector3.Distance(transform.position, player.transform.position) <= zSO.awarenessDistance)
             {
                 RaycastHit hit;
                 if (Physics.Linecast(transform.position, player.transform.position, out hit, -1))
@@ -104,14 +98,14 @@ public class Zombie : MonoBehaviour
     {
         animZom.Play("Chasing");
         transform.LookAt(player.transform);
-        agent.speed = zombieChaseSpeed;
-        agent.SetDestination(player.transform.position);
+        agent.speed = zSO.zombieChaseSpeed;
+        agent.SetDestination(transform.position);
     }
 
     void WalkPoint()
     {
-        float randomZ = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
-        float randomX = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
+        float randomZ = UnityEngine.Random.Range(-zSO.walkPointRange, zSO.walkPointRange);
+        float randomX = UnityEngine.Random.Range(-zSO.walkPointRange, zSO.walkPointRange);
 
         walkPoint = new Vector3(randomX, transform.position.y, randomZ);
 
@@ -126,7 +120,7 @@ public class Zombie : MonoBehaviour
         if (walkPointSet)
         {
             agent.SetDestination(walkPoint);
-            agent.speed = zombieWanderSpeed;
+            agent.speed = zSO.zombieWanderSpeed;
         }
         animZom.Play("Walk");
 
@@ -138,12 +132,18 @@ public class Zombie : MonoBehaviour
         }
     }
 
+    void Attack()
+    {
+        if (agent.stoppingDistance <= zSO.attackDistance)
+        {
 
+        }
+    }
 
     public void TakeDamage(float damagee)
     {
-        zomHealth -= damagee;
-        if (zomHealth <= 0)
+        zSO.zomHealth -= damagee;
+        if (zSO.zomHealth <= 0)
         {
             Death();
         }
@@ -153,7 +153,7 @@ public class Zombie : MonoBehaviour
     {
         animZom.enabled = false;
         agent.speed = 0;
-        foreach (Collider c in ragColliders)
+        foreach (Collider c in zSO.ragColliders)
         {
             c.enabled = true;
             if (c.CompareTag("Zombie"))
@@ -161,7 +161,7 @@ public class Zombie : MonoBehaviour
                 c.enabled = false;
             }
         }
-        foreach (Rigidbody r in ragRigidbodies)
+        foreach (Rigidbody r in zSO.ragRigidbodies)
         {
             if (!r.CompareTag("Zombie"))
             {
@@ -181,8 +181,8 @@ public class Zombie : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        float rayRange = awarenessDistance;
-        float halfFOV = fov / 2f;
+        float rayRange = zSO.awarenessDistance;
+        float halfFOV = zSO.FOV / 2f;
         Quaternion leftRayRotation = Quaternion.AngleAxis(-halfFOV, Vector3.up);
         Quaternion rightRayRotation = Quaternion.AngleAxis(halfFOV, Vector3.up);
         Vector3 leftRayDirection = leftRayRotation * transform.forward;
@@ -190,6 +190,9 @@ public class Zombie : MonoBehaviour
         Gizmos.DrawRay(transform.position, leftRayDirection * rayRange);
         Gizmos.DrawRay(transform.position, rightRayDirection * rayRange);
 
+
+        Gizmos.color= Color.yellow;
+        Gizmos.DrawSphere(player.transform.position, zSO.attackDistance);
     }
 
 

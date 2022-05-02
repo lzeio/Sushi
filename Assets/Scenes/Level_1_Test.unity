@@ -2481,7 +2481,7 @@ PrefabInstance:
     - target: {fileID: 8492403936355881923, guid: 073a0869694d1854a9fc23dacc7ae0c9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.0509114
+      value: 3.0509381
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073a0869694d1854a9fc23dacc7ae0c9, type: 3}
@@ -11208,7 +11208,7 @@ PrefabInstance:
     - target: {fileID: 8492403936355881923, guid: 073a0869694d1854a9fc23dacc7ae0c9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.0509143
+      value: 3.050941
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073a0869694d1854a9fc23dacc7ae0c9, type: 3}
@@ -13743,7 +13743,7 @@ PrefabInstance:
     - target: {fileID: 8492403936355881923, guid: 073a0869694d1854a9fc23dacc7ae0c9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.0509124
+      value: 3.050939
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073a0869694d1854a9fc23dacc7ae0c9, type: 3}
@@ -20948,6 +20948,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7275946396849062386, guid: dbe8fa6c80614634397c04c911e33600,
         type: 3}
+      propertyPath: zSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 842a0730498e2aa4abfb14107fa85f03,
+        type: 2}
+    - target: {fileID: 7275946396849062386, guid: dbe8fa6c80614634397c04c911e33600,
+        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 3651490324250186262}
@@ -21629,7 +21635,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1831326, y: 1}
+    m_SensorSize: {x: 1.9921976, y: 1}
     Iso: 200
     ShutterSpeed: 0.005
     Aperture: 16
