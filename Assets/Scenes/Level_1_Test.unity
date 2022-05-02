@@ -109,11 +109,11 @@ NavMeshSettings:
     agentRadius: 0.5
     agentHeight: 2
     agentSlope: 45
-    agentClimb: 0.4
+    agentClimb: 1.25
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
-    manualCellSize: 0
+    manualCellSize: 1
     cellSize: 0.16666667
     manualTileSize: 0
     tileSize: 256
@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 42b6ec7f772ffa64d88ea3b210e87fa9, type: 2}
 --- !u!1001 &8045445
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2481,7 +2481,7 @@ PrefabInstance:
     - target: {fileID: 8492403936355881923, guid: 073a0869694d1854a9fc23dacc7ae0c9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.0509105
+      value: 3.0509114
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073a0869694d1854a9fc23dacc7ae0c9, type: 3}
@@ -10991,7 +10991,7 @@ PrefabInstance:
     - target: {fileID: 8492403936355881923, guid: 073a0869694d1854a9fc23dacc7ae0c9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.0509133
+      value: 3.0509143
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073a0869694d1854a9fc23dacc7ae0c9, type: 3}
@@ -13526,7 +13526,7 @@ PrefabInstance:
     - target: {fileID: 8492403936355881923, guid: 073a0869694d1854a9fc23dacc7ae0c9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.0509114
+      value: 3.0509124
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073a0869694d1854a9fc23dacc7ae0c9, type: 3}
@@ -21362,7 +21362,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9279141, y: 1}
+    m_SensorSize: {x: 2.1831326, y: 1}
     Iso: 200
     ShutterSpeed: 0.005
     Aperture: 16
