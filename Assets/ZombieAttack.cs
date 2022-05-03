@@ -5,7 +5,7 @@ using UnityEngine;
 public class ZombieAttack : MonoBehaviour
 {
 
-    public ZombieData lol;
+    public ZombieData zOS;
     PlayerController playerController;
 
     public SphereCollider sp;
@@ -13,24 +13,20 @@ public class ZombieAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        damage = float.Parse(lol.zombieAttackDamage);
+        damage = float.Parse(zOS.zombieAttackDamage);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if( sp != null || sp.enabled!=true)
-        {
-            sp.enabled = true;
-        }
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.LogWarning("UH");
         if(other.gameObject.CompareTag("Player"))
         {
-            PlayerController.instance.playerHealth -= damage;
+            PlayerController.playerInstance.playerHealth -= damage;
         }
     }
 

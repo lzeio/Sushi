@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Zombie
   m_EditorClassIdentifier: 
   FOV: 120
-  walkPointRange: 5
-  zomHealth: 100
+  walkPointRange: 50
+  zomHealth: 10
   zombieAttackDamage: 100
   awarenessDistance: 15
-  zombieWanderSpeed: 1
-  zombieChaseSpeed: 3
+  zombieWanderSpeed: 0.5
+  zombieChaseSpeed: 1
   attackDistance: 7.5
+  isRanged: 0

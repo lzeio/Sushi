@@ -109,7 +109,7 @@ NavMeshSettings:
     agentRadius: 0.5
     agentHeight: 2
     agentSlope: 45
-    agentClimb: 0.4
+    agentClimb: 1.5
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -397,9 +397,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fdd79307c9d6b041b50ca0e1d0fed6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lol: {fileID: 11400000, guid: 842a0730498e2aa4abfb14107fa85f03, type: 2}
+  zOS: {fileID: 11400000, guid: 842a0730498e2aa4abfb14107fa85f03, type: 2}
   sp: {fileID: 625582796}
   damage: 0
+--- !u!1 &664803351 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7275946396849062384, guid: dbe8fa6c80614634397c04c911e33600,
+    type: 3}
+  m_PrefabInstance: {fileID: 7275946397384796332}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &664803357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664803351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de173937e83d27e4d98f80a95b87eab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragColliders: []
+  ragRigidbodies: []
 --- !u!1 &673185480
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,11 +663,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4527782635703784387, guid: 1e4f6fdb4e114fd48b2bcea7d63ce98a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5535469065836069665, guid: 1e4f6fdb4e114fd48b2bcea7d63ce98a,
         type: 3}
       propertyPath: fpsCam
       value: 
       objectReference: {fileID: 381772743}
+    - target: {fileID: 5535469065836069665, guid: 1e4f6fdb4e114fd48b2bcea7d63ce98a,
+        type: 3}
+      propertyPath: gunData
+      value: 
+      objectReference: {fileID: 11400000, guid: f3bf7a5b4de7b0543bb61ef628320e6d,
+        type: 2}
+    - target: {fileID: 5692055581155336828, guid: 1e4f6fdb4e114fd48b2bcea7d63ce98a,
+        type: 3}
+      propertyPath: m_Lens.m_SensorSize.x
+      value: 2.1783133
+      objectReference: {fileID: 0}
     - target: {fileID: 9033732011961048133, guid: 1e4f6fdb4e114fd48b2bcea7d63ce98a,
         type: 3}
       propertyPath: playerHealth
@@ -1451,13 +1487,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7275946396849062386, guid: dbe8fa6c80614634397c04c911e33600,
         type: 3}
+      propertyPath: health
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275946396849062386, guid: dbe8fa6c80614634397c04c911e33600,
+        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1489764045}
+    - target: {fileID: 7275946396849062386, guid: dbe8fa6c80614634397c04c911e33600,
+        type: 3}
+      propertyPath: zombieData
+      value: 
+      objectReference: {fileID: 11400000, guid: 842a0730498e2aa4abfb14107fa85f03,
+        type: 2}
+    - target: {fileID: 7275946396849062387, guid: dbe8fa6c80614634397c04c911e33600,
+        type: 3}
+      propertyPath: m_BaseOffset
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7275946396849062387, guid: dbe8fa6c80614634397c04c911e33600,
         type: 3}
       propertyPath: m_StoppingDistance
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbe8fa6c80614634397c04c911e33600, type: 3}

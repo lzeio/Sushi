@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 public class GunSystem : MonoBehaviour
 {
-    [SerializeField] private GunData gSO;
+    [SerializeField] private GunData gunData;
 
     
 
@@ -37,8 +37,8 @@ public class GunSystem : MonoBehaviour
 
     private void Awake()
     {
-        gSO.bulletsLeft = gSO.magazineSize;
-        gSO.totalBullets = gSO.magazineSize * gSO.totalMags;
+        gunData.bulletsLeft = gunData.magazineSize;
+        gunData.totalBullets = gunData.magazineSize * gunData.totalMags;
         readyToShoot = true;
        // Instance = this;
     }
@@ -53,36 +53,35 @@ public class GunSystem : MonoBehaviour
         //Ammo
         // txt.SetText(bulletsLeft + " / " + totalBullets);
 
-        Debug.Log(gSO.damage);
     }
 
     private void FixedUpdate()
     {
 
-        gSO.rotationalRecoil = Vector3.Lerp(gSO.rotationalRecoil, Vector3.zero, gSO.rotationalReturnSpeed * Time.deltaTime);
-        gSO.positionalRecoil = Vector3.Lerp(gSO.positionalRecoil, Vector3.zero, gSO.positionalReturnSpeed * Time.deltaTime);
+        gunData.rotationalRecoil = Vector3.Lerp(gunData.rotationalRecoil, Vector3.zero, gunData.rotationalReturnSpeed * Time.deltaTime);
+        gunData.positionalRecoil = Vector3.Lerp(gunData.positionalRecoil, Vector3.zero, gunData.positionalReturnSpeed * Time.deltaTime);
 
-        recoilPosition.localPosition = Vector3.Slerp(recoilPosition.localPosition, gSO.positionalRecoil, gSO.positionalRecoilSpeed * Time.fixedDeltaTime);
-        gSO.rot = Vector3.Slerp(gSO.rot, gSO.rotationalRecoil, gSO.rotationalRecoilSpeed * Time.fixedDeltaTime);
-        rotationPoint.localRotation = Quaternion.Euler(gSO.rot);
+        recoilPosition.localPosition = Vector3.Slerp(recoilPosition.localPosition, gunData.positionalRecoil, gunData.positionalRecoilSpeed * Time.fixedDeltaTime);
+        gunData.rot = Vector3.Slerp(gunData.rot, gunData.rotationalRecoil, gunData.rotationalRecoilSpeed * Time.fixedDeltaTime);
+        rotationPoint.localRotation = Quaternion.Euler(gunData.rot);
 
     }
     private void MyInput()
     {
-        if (gSO.allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
+        if (gunData.allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
        
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
         
-        if (Input.GetKeyDown(KeyCode.R) && gSO.bulletsLeft / gSO.totalMags < gSO.magazineSize / gSO.totalMags && !reloading) Reload();
+        if (Input.GetKeyDown(KeyCode.R) && gunData.bulletsLeft / gunData.totalMags < gunData.magazineSize / gunData.totalMags && !reloading) Reload();
 
         //Shoot
-        if (readyToShoot && shooting && !reloading && gSO.bulletsLeft > 0)
+        if (readyToShoot && shooting && !reloading && gunData.bulletsLeft > 0)
         {
-            gSO.bulletsShot = gSO.bulletsPerTap;
+            gunData.bulletsShot = gunData.bulletsPerTap;
             Shoot(); Recoil(); 
             CamRecoil.crInstance.CameraRecoil();
-            Detection.dInstance.SoundDetection();
+            Detection.detectionInstance.SoundDetection();
         }
     }
     private void Shoot()
@@ -90,18 +89,18 @@ public class GunSystem : MonoBehaviour
         readyToShoot = false;
 
         //Spread
-        float x = Random.Range(gSO.spreadX, gSO.spreadX);
-        float y = Random.Range(0, gSO.spreadY);
+        float x = Random.Range(gunData.spreadX, gunData.spreadX);
+        float y = Random.Range(0, gunData.spreadY);
 
         //Calculate Direction with Spread
         Vector3 direction = fpsCam.transform.forward + new Vector3(x, y, 0);
 
         //RayCast
-        if (Physics.Raycast(attackPoint.transform.position, direction, out rayHit, gSO.range, whatIsEnemy))
+        if (Physics.Raycast(attackPoint.transform.position, direction, out rayHit, gunData.range, whatIsEnemy))
         {
-            if (rayHit.transform.tag == "Zombie")
+            if (rayHit.transform.tag == "Zombie" )
             {
-                rayHit.transform.GetComponent<Zombie>().TakeDamage(gSO.damage);
+                rayHit.transform.GetComponentInParent<Zombie>().TakeDamage(gunData.damage);
             }
            
         }
@@ -110,14 +109,14 @@ public class GunSystem : MonoBehaviour
         //Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
         //GameObject mFlash=Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
         //Destroy(mFlash, .5f);
-        gSO.bulletsLeft--;
-        gSO.bulletsShot--;
+        gunData.bulletsLeft--;
+        gunData.bulletsShot--;
         //totalBullets--;
         
-        Invoke("ResetShot", gSO.timeBetweenShooting);
+        Invoke("ResetShot", gunData.timeBetweenShooting);
 
-        if (gSO.bulletsShot > 0 && gSO.bulletsLeft > 0)
-            Invoke("Shoot", gSO.timeBetweenShots);
+        if (gunData.bulletsShot > 0 && gunData.bulletsLeft > 0)
+            Invoke("Shoot", gunData.timeBetweenShots);
         
     }
     private void ResetShot()
@@ -127,21 +126,21 @@ public class GunSystem : MonoBehaviour
     private void Reload()
     {
         reloading = true;
-        Invoke("ReloadFinished", gSO.reloadTime);
+        Invoke("ReloadFinished", gunData.reloadTime);
     }
     private void ReloadFinished()
     {
-        if (gSO.totalBullets >= gSO.magazineSize)
-            gSO.bulletsLeft = gSO.magazineSize;
-        else if(gSO.totalBullets < gSO.magazineSize)
-            gSO.bulletsLeft = gSO.totalBullets;
+        if (gunData.totalBullets >= gunData.magazineSize)
+            gunData.bulletsLeft = gunData.magazineSize;
+        else if(gunData.totalBullets < gunData.magazineSize)
+            gunData.bulletsLeft = gunData.totalBullets;
         reloading = false;
     }
 
     void Recoil()
     {
-        gSO.rotationalRecoil += new Vector3(gSO.recoilRotation.x, UnityEngine.Random.Range(gSO.recoilRotation.y, gSO.recoilRotation.y), UnityEngine.Random.Range(gSO.recoilRotation.z, gSO.recoilRotation.z));
-        gSO.positionalRecoil += new Vector3(UnityEngine.Random.Range(gSO.recoilKickBack.x, gSO.recoilKickBack.x), UnityEngine.Random.Range(gSO.recoilKickBack.y, gSO.recoilKickBack.y), gSO.recoilKickBack.z);
+        gunData.rotationalRecoil += new Vector3(gunData.recoilRotation.x, UnityEngine.Random.Range(gunData.recoilRotation.y, gunData.recoilRotation.y), UnityEngine.Random.Range(gunData.recoilRotation.z, gunData.recoilRotation.z));
+        gunData.positionalRecoil += new Vector3(UnityEngine.Random.Range(gunData.recoilKickBack.x, gunData.recoilKickBack.x), UnityEngine.Random.Range(gunData.recoilKickBack.y, gunData.recoilKickBack.y), gunData.recoilKickBack.z);
     }
 
 
@@ -151,6 +150,6 @@ public class GunSystem : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, gSO.soundDetectionRadius);
+        Gizmos.DrawWireSphere(transform.position, gunData.soundDetectionRadius);
     }
 }

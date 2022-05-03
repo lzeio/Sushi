@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ZombieRagdoll : MonoBehaviour
 {
-    public static ZombieRagdoll Instance;
+    public static ZombieRagdoll zomRagInstance;
 
     public Collider[] ragColliders;
     public Rigidbody[] ragRigidbodies;
 
     private void Awake()
     {
-        Instance = this;
+        zomRagInstance = this;
     }
     // Start is called before the first frame update
     void Start()

@@ -28,10 +28,10 @@ public class PlayerController : MonoBehaviour
     public float playerHealth;
 
     //Instance
-    public static PlayerController instance;
+    public static PlayerController playerInstance;
     private void Awake()
     {
-        instance = this;
+        playerInstance = this;
     }
     private void Update()
     {
@@ -54,7 +54,8 @@ public class PlayerController : MonoBehaviour
 
         if(playerHealth<=0)
         {
-            Debug.Log("Lol ");
+            gameObject.SetActive(false); // for time being
+
         }
     }
 

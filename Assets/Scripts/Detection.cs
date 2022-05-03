@@ -8,7 +8,7 @@ public class Detection : MonoBehaviour
 
     public float detectionRangeSprint,detectionRangeWalk;
 
-    public static Detection dInstance;
+    public static Detection detectionInstance;
 
     public GunData gSO;
 
@@ -16,13 +16,13 @@ public class Detection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dInstance = this;
+        detectionInstance = this;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(PlayerController.instance.isDashing)
+        if(PlayerController.playerInstance.isDashing)
         {
             detect.radius = detectionRangeSprint;
         }
@@ -41,7 +41,7 @@ public class Detection : MonoBehaviour
 
     public void SoundDetection()
     {
-        Debug.Log("De");
+       
         //Play Gun Sound aus.playoneshot(
         Collider[] zomCollider = Physics.OverlapSphere(transform.position, gSO.soundDetectionRadius, whatIsEnemy);
         for (int i = 0; i < zomCollider.Length; i++)
@@ -49,7 +49,7 @@ public class Detection : MonoBehaviour
             if (zomCollider[i].GetComponent<Zombie>() != null)
             {
                 zomCollider[i].GetComponent<Zombie>().OnAware();
-                Debug.Log(zomCollider[i].name);
+                
             }
         }
            
