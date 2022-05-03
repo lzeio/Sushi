@@ -41,13 +41,18 @@ public class Detection : MonoBehaviour
 
     public void SoundDetection()
     {
+        Debug.Log("De");
         //Play Gun Sound aus.playoneshot(
         Collider[] zomCollider = Physics.OverlapSphere(transform.position, gSO.soundDetectionRadius, whatIsEnemy);
         for (int i = 0; i < zomCollider.Length; i++)
         {
-            zomCollider[i].GetComponent<Zombie>().OnAware();
-            Debug.Log(zomCollider[i].name);
+            if (zomCollider[i].GetComponent<Zombie>() != null)
+            {
+                zomCollider[i].GetComponent<Zombie>().OnAware();
+                Debug.Log(zomCollider[i].name);
+            }
         }
+           
     }
 
 }

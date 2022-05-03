@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Zombie
+  - Walls
+  - AttackPoint
   layers:
   - Default
   - TransparentFX

@@ -83,7 +83,6 @@ public class GunSystem : MonoBehaviour
             Shoot(); Recoil(); 
             CamRecoil.crInstance.CameraRecoil();
             Detection.dInstance.SoundDetection();
-           
         }
     }
     private void Shoot()
@@ -119,6 +118,7 @@ public class GunSystem : MonoBehaviour
 
         if (gSO.bulletsShot > 0 && gSO.bulletsLeft > 0)
             Invoke("Shoot", gSO.timeBetweenShots);
+        
     }
     private void ResetShot()
     {

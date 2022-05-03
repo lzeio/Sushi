@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public CharacterController cc;
+
+    public ZombieData zz;
 
 
     public float playerSpeed = 12f;
@@ -19,8 +22,10 @@ public class PlayerController : MonoBehaviour
 
     public bool isDashing;
     private bool isGrounded;
+
     public Vector3 movement;
 
+    public float playerHealth;
 
     //Instance
     public static PlayerController instance;
@@ -46,6 +51,11 @@ public class PlayerController : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         cc.Move(velocity * Time.deltaTime);
+
+        if(playerHealth<=0)
+        {
+            Debug.Log("Lol ");
+        }
     }
 
     private void FixedUpdate()
@@ -58,6 +68,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   
+    
+
+
 } 
 
