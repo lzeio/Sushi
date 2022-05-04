@@ -26,6 +26,7 @@ public class ZombieAttack : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
+            Debug.Log(other.transform.name);
             PlayerController.playerInstance.playerHealth -= damage;
         }
     }

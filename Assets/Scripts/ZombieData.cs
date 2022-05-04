@@ -22,5 +22,6 @@ public class ZombieData : ScriptableObject
     public float zombieChaseSpeed;
     public float attackDistance;
     public bool isRanged;
+    public float rangeAttackDistance;
     
 }

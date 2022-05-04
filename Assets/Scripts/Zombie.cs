@@ -24,7 +24,7 @@ public class Zombie : MonoBehaviour
     // Start is called before the first frame updat
     void Start()
     {
-        
+        Debug.Log(zombieData.rangeAttackDistance);
         agent = GetComponent<NavMeshAgent>();
         animZom = GetComponent<Animator>();
 
@@ -34,21 +34,35 @@ public class Zombie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        Debug.Log(zombieData.isRanged);
         if (health <= 0)
         {
             Death();
             return;
         }
+
+        RangeAttack();
         if (isAware)
         {
-            ChasePlayer();
-            Attack();
+           ChasePlayer();
+            if(zombieData.isRanged)
+            {
+                RangeAttack();
+            }
+            else
+            {
+                 Attack();
+            }
+           
+                
         }
+        
         else
         {
             Wandering();
             SearchForPlayer();
-
+           
         }
 
             
@@ -62,27 +76,42 @@ public class Zombie : MonoBehaviour
 
     public void SearchForPlayer()
     {
-        if (Vector3.Angle(Vector3.forward, transform.InverseTransformPoint(player.transform.position)) <= zombieData.FOV / 2f)
+        if (zombieData.isRanged)
         {
-            if (Vector3.Distance(transform.position, player.transform.position) <= zombieData.awarenessDistance)
+            if (Physics.CheckSphere(transform.position, zombieData.rangeAttackDistance, player.transform.gameObject.layer))
             {
-                RaycastHit hit;
-                if (Physics.Linecast(transform.position, player.transform.position, out hit, -1))
+                agent.stoppingDistance = zombieData.rangeAttackDistance;
+                OnAware();
+            }
+        }
+        
+        else
+        {
+            if (Vector3.Angle(Vector3.forward, transform.InverseTransformPoint(player.transform.position)) <= zombieData.FOV / 2f)
+            {
+                if (Vector3.Distance(transform.position, player.transform.position) <= zombieData.awarenessDistance)
                 {
-                    if (hit.transform.CompareTag("Player"))
+                    RaycastHit hit;
+                    if (Physics.Linecast(transform.position, player.transform.position, out hit, -1))
                     {
-                        OnAware();
+                        if (hit.transform.CompareTag("Player"))
+                        {
+                            OnAware();
+                        }
+
                     }
 
                 }
-
             }
+
         }
     }
+    
 
 
     void ChasePlayer()
     {
+        
         animZom.SetTrigger("Chasing");
         transform.LookAt(player.transform);
         agent.speed = zombieData.zombieChaseSpeed;
@@ -169,6 +198,7 @@ public class Zombie : MonoBehaviour
         {
             animZom.SetBool("Attacking", true);
         }
+        else return;
     }
 
     public void ActivateFist()
@@ -181,7 +211,10 @@ public class Zombie : MonoBehaviour
         attackBodyPart.GetComponent<SphereCollider>().enabled = false;
     }
 
-
+    void RangeAttack()
+    {
+       
+    }
 
     private void OnDrawGizmos()
     {
@@ -198,6 +231,9 @@ public class Zombie : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(player.transform.position, zombieData.attackDistance);
 
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(transform.position, zombieData.rangeAttackDistance);
 
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ZombieRagdoll : MonoBehaviour
 {
+    
     public static ZombieRagdoll zomRagInstance;
 
     public Collider[] ragColliders;

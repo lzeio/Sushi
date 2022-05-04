@@ -54,7 +54,8 @@ public class PlayerController : MonoBehaviour
 
         if(playerHealth<=0)
         {
-            gameObject.SetActive(false); // for time being
+            Debug.Log("Noob");
+            //gameObject.SetActive(false); // for time being
 
         }
     }
