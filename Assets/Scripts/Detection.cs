@@ -33,9 +33,21 @@ public class Detection : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Zombie"))
+     if(other.transform.gameObject.layer==10)
         {
-            other.GetComponent<Zombie>().OnAware();
+            switch (other.transform.gameObject.tag)
+            {
+
+                case "Zombie": other.GetComponent<Zombie>().OnAware();
+                    Debug.Log("Zombie Called");
+                    break;
+                case "Range": other.GetComponent<RangeZombie>().InRange();
+                    Debug.Log("Range Zombie Called");
+
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

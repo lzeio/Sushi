@@ -10,14 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5631b08e16bc091419d2ba5898aac691, type: 3}
-  m_Name: Zombie
+  m_Name: Range
   m_EditorClassIdentifier: 
   FOV: 120
   walkPointRange: 50
-  zomHealth: 10
-  zombieAttackDamage: 100
+  zomHealth: 20
+  zombieAttackDamage: 30
   awarenessDistance: 15
   zombieWanderSpeed: 0.5
   zombieChaseSpeed: 1
   attackDistance: 7.5
-  isRanged: 0
+  zombieStoppingDistance: 25
+  isRanged: 1
+  rangeAttackDistance: 50
+  projectile: {fileID: 8207893153237501914, guid: a8f9861a5b743f748a8b5d4ff6a0b336,
+    type: 3}
+  projectileSpeed: 20
+  timeBetweenAttacks: 2

@@ -21,7 +21,8 @@ public class Dashing : MonoBehaviour
      
         if (controllerScript.isDashing)
         {
-            StartCoroutine(Dash());
+            StartCoroutine(Dash());//need a cool down here
+
         }
     }
 

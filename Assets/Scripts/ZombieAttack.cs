@@ -1,33 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ZombieAttack : MonoBehaviour
 {
 
-    public ZombieData zOS;
+    public ZombieData zombieData;
     PlayerController playerController;
 
     public SphereCollider sp;
-    public float damage;
+    private float damage;
     // Start is called before the first frame update
     void Start()
     {
-        damage = float.Parse(zOS.zombieAttackDamage);
+        damage = float.Parse(zombieData.zombieAttackDamage);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log(damage);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log(other.transform.name);
-            PlayerController.playerInstance.playerHealth -= damage;
+            PlayerDeathDamage.playerDeathDamageInstance.TakeDamage(damage);
         }
     }
 

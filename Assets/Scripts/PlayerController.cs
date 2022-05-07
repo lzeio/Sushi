@@ -4,30 +4,32 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
+    [Header("Components")]
     public CharacterController cc;
+    public ZombieData zombieData;
 
-    public ZombieData zz;
-
-
+    [Header("Player Data")]
     public float playerSpeed = 12f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
+    
+    public Vector3 movement;
     private Vector3 velocity;
 
     // Ground Check
-
+    [Header("Grounded")]
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
+    [Header("Bool")]
     public bool isDashing;
     private bool isGrounded;
 
-    public Vector3 movement;
 
-    public float playerHealth;
 
-    //Instance
+
+    
     public static PlayerController playerInstance;
     private void Awake()
     {
@@ -52,12 +54,6 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         cc.Move(velocity * Time.deltaTime);
 
-        if(playerHealth<=0)
-        {
-            Debug.Log("Noob");
-            //gameObject.SetActive(false); // for time being
-
-        }
     }
 
     private void FixedUpdate()

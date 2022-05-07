@@ -21,7 +21,13 @@ public class ZombieData : ScriptableObject
     public float zombieWanderSpeed;
     public float zombieChaseSpeed;
     public float attackDistance;
+    public float zombieStoppingDistance;
+
+
+    [Header("Ranged")]
     public bool isRanged;
     public float rangeAttackDistance;
-    
+    public GameObject projectile;
+    public float projectileSpeed;
+    public string timeBetweenAttacks;
 }

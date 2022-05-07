@@ -1,25 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Misc : MonoBehaviour
 {
-    // Start is called before the first frame update
 
-    public string lol = "Disable";
+    public NavMeshAgent agent;
+    public PlayerController playerController;
+    // Start is called before the first frame update
     void Start()
     {
-        Invoke(lol, 2f);
+        agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        agent.SetDestination(playerController.transform.position);
     }
 
-    void Disable()
-    {
-        gameObject.SetActive(false);
-    }
 }

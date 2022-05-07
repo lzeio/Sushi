@@ -3,69 +3,58 @@ using UnityEngine;
 using UnityEngine.AI;
 public class Zombie : MonoBehaviour
 {
-
-    public PlayerController player;
-    public ZombieData zombieData;
-    public bool isAware = false;
-
+    [Header("Components")]
     private NavMeshAgent agent;
-    public float health;
-    private Vector3 walkPoint;
+    private Animator animZom;
+    public ZombieData zombieData;
+    
+    
+    [Header("Player")]
+    public PlayerController player;
+
+
+
+    [Header("Wandering")]
+    public Vector3 walkPoint;
     bool walkPointSet;
 
-
+  
+    [Header("Attacking")]
+    public bool isAware = false;
     public GameObject attackBodyPart;
-    private Animator animZom;
+
+
+
+    [Header("Misc")]
+    public float remainingDistance;
+    public Vector3 enemyDestination;
+
+
+ 
 
     private void Awake()
     {
-        health = int.Parse(zombieData.zomHealth);
-    }
-    // Start is called before the first frame updat
-    void Start()
-    {
-        Debug.Log(zombieData.rangeAttackDistance);
         agent = GetComponent<NavMeshAgent>();
         animZom = GetComponent<Animator>();
-
-
+        agent.stoppingDistance = zombieData.zombieStoppingDistance;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-
-        Debug.Log(zombieData.isRanged);
-        if (health <= 0)
-        {
-            Death();
-            return;
-        }
-
-        RangeAttack();
         if (isAware)
         {
-           ChasePlayer();
-            if(zombieData.isRanged)
-            {
-                RangeAttack();
-            }
-            else
-            {
-                 Attack();
-            }
-           
-                
+            Attack();
+            ChasePlayer();
+
         }
-        
         else
         {
             Wandering();
             SearchForPlayer();
-           
         }
 
-            
+        remainingDistance = agent.remainingDistance;
+        enemyDestination = agent.destination;
     }
 
     public void OnAware()
@@ -76,42 +65,31 @@ public class Zombie : MonoBehaviour
 
     public void SearchForPlayer()
     {
-        if (zombieData.isRanged)
+        if (Vector3.Angle(Vector3.forward, transform.InverseTransformPoint(player.transform.position)) <= zombieData.FOV / 2f)
         {
-            if (Physics.CheckSphere(transform.position, zombieData.rangeAttackDistance, player.transform.gameObject.layer))
+            if (Vector3.Distance(transform.position, player.transform.position) <= zombieData.awarenessDistance)
             {
-                agent.stoppingDistance = zombieData.rangeAttackDistance;
-                OnAware();
-            }
-        }
-        
-        else
-        {
-            if (Vector3.Angle(Vector3.forward, transform.InverseTransformPoint(player.transform.position)) <= zombieData.FOV / 2f)
-            {
-                if (Vector3.Distance(transform.position, player.transform.position) <= zombieData.awarenessDistance)
+                RaycastHit hit;
+                if (Physics.Linecast(transform.position, player.transform.position, out hit, -1))
                 {
-                    RaycastHit hit;
-                    if (Physics.Linecast(transform.position, player.transform.position, out hit, -1))
+                    if (hit.transform.CompareTag("Player"))
                     {
-                        if (hit.transform.CompareTag("Player"))
-                        {
-                            OnAware();
-                        }
-
+                        OnAware();
                     }
 
                 }
-            }
 
+            }
         }
+
     }
     
 
 
+
     void ChasePlayer()
     {
-        
+       
         animZom.SetTrigger("Chasing");
         transform.LookAt(player.transform);
         agent.speed = zombieData.zombieChaseSpeed;
@@ -122,12 +100,13 @@ public class Zombie : MonoBehaviour
 
     void Wandering()
     {
+
         if (!walkPointSet) WalkPoint();
 
         if (walkPointSet)
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.position * 10, out hit, 3f))
+            if (Physics.Raycast(transform.position, (walkPoint - transform.position), out hit, 3f))
             {
                 if (hit.transform.CompareTag("Walls"))
                 {
@@ -135,20 +114,18 @@ public class Zombie : MonoBehaviour
                 }
                 else
                 {
-                    agent.SetDestination(walkPoint);
+                    agent.destination = walkPoint;
                     animZom.SetTrigger("Walking");
                     agent.speed = zombieData.zombieWanderSpeed;
                 }
 
 
             }
-
         }
-
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
-        if (distanceToWalkPoint.magnitude < 3f)
+        if (distanceToWalkPoint.magnitude < agent.stoppingDistance)
         {
             walkPointSet = false;
         }
@@ -165,42 +142,6 @@ public class Zombie : MonoBehaviour
             walkPointSet = true;
     }
 
-
-
-    public void TakeDamage(float damagee)
-    {
-        health -= damagee;
-        if (health <= 0)
-        {
-            Death();
-        }
-    }
-
-    public void Death()
-    { 
-        animZom.enabled = false;
-        agent.speed = 0;
-        ZombieRagdoll.zomRagInstance.RagdollON();
-        StartCoroutine(WaitForDeath());
-    }
-
-    IEnumerator WaitForDeath()
-    {
-        yield return new WaitForSeconds(4);
-        gameObject.SetActive(false);
-    }
-
-
-
-    void Attack()
-    {
-        if (Vector3.Distance(player.transform.position, transform.position) <= zombieData.attackDistance)
-        {
-            animZom.SetBool("Attacking", true);
-        }
-        else return;
-    }
-
     public void ActivateFist()
     {
         attackBodyPart.GetComponent<SphereCollider>().enabled = true;
@@ -210,12 +151,15 @@ public class Zombie : MonoBehaviour
     {
         attackBodyPart.GetComponent<SphereCollider>().enabled = false;
     }
-
-    void RangeAttack()
+    void Attack()
     {
-       
+        if (Vector3.Distance(player.transform.position, transform.position) <= zombieData.attackDistance)
+        {
+            animZom.SetBool("Attacking", true);
+        }
+        else return;
     }
-
+    
     private void OnDrawGizmos()
     {
         float rayRange = zombieData.awarenessDistance;
@@ -226,17 +170,5 @@ public class Zombie : MonoBehaviour
         Vector3 rightRayDirection = rightRayRotation * transform.forward;
         Gizmos.DrawRay(transform.position, leftRayDirection * rayRange);
         Gizmos.DrawRay(transform.position, rightRayDirection * rayRange);
-
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(player.transform.position, zombieData.attackDistance);
-
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(transform.position, zombieData.rangeAttackDistance);
-
     }
-
-
-
 }

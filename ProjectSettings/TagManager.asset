@@ -7,6 +7,7 @@ TagManager:
   - Zombie
   - Walls
   - AttackPoint
+  - Range
   layers:
   - Default
   - TransparentFX

@@ -988,7 +988,7 @@ Camera:
     height: 1
   near clip plane: 0.5
   far clip plane: 1000
-  field of view: 30
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2481,7 +2481,7 @@ PrefabInstance:
     - target: {fileID: 8492403936355881923, guid: 073a0869694d1854a9fc23dacc7ae0c9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.051045
+      value: 3.0510468
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073a0869694d1854a9fc23dacc7ae0c9, type: 3}
@@ -11208,7 +11208,7 @@ PrefabInstance:
     - target: {fileID: 8492403936355881923, guid: 073a0869694d1854a9fc23dacc7ae0c9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.0510478
+      value: 3.0510497
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073a0869694d1854a9fc23dacc7ae0c9, type: 3}
@@ -13833,7 +13833,7 @@ PrefabInstance:
     - target: {fileID: 8492403936355881923, guid: 073a0869694d1854a9fc23dacc7ae0c9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.051046
+      value: 3.0510478
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073a0869694d1854a9fc23dacc7ae0c9, type: 3}
@@ -21795,6 +21795,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1683157516165178729, guid: 1e4f6fdb4e114fd48b2bcea7d63ce98a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.54
+      objectReference: {fileID: 0}
     - target: {fileID: 4527782635703784387, guid: 1e4f6fdb4e114fd48b2bcea7d63ce98a,
         type: 3}
       propertyPath: m_Name
@@ -21805,5 +21810,15 @@ PrefabInstance:
       propertyPath: fpsCam
       value: 
       objectReference: {fileID: 99078844}
+    - target: {fileID: 5692055581155336828, guid: 1e4f6fdb4e114fd48b2bcea7d63ce98a,
+        type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5692055581155336828, guid: 1e4f6fdb4e114fd48b2bcea7d63ce98a,
+        type: 3}
+      propertyPath: m_Lens.m_SensorSize.x
+      value: 1.0100335
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e4f6fdb4e114fd48b2bcea7d63ce98a, type: 3}

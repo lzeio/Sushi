@@ -2540,11 +2540,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e9c80ceacba4e749a27fb525f7d65c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   zombieData: {fileID: 11400000, guid: 842a0730498e2aa4abfb14107fa85f03, type: 2}
+  player: {fileID: 0}
+  walkPoint: {x: 0, y: 0, z: 0}
   isAware: 0
-  health: 0
   attackBodyPart: {fileID: 7275946396179742236}
+  remainingDistance: 0
+  enemyDestination: {x: 0, y: 0, z: 0}
 --- !u!114 &664803357
 MonoBehaviour:
   m_ObjectHideFlags: 0

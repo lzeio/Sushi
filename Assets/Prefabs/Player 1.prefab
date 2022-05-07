@@ -1507,8 +1507,8 @@ GameObject:
   m_Component:
   - component: {fileID: 616627602317681104}
   - component: {fileID: 9033732011961048139}
-  - component: {fileID: 9033732011961048133}
   - component: {fileID: 9033732011961048138}
+  - component: {fileID: 9033732011961048133}
   - component: {fileID: 9033732011961048132}
   m_Layer: 0
   m_Name: Player 1
@@ -1553,6 +1553,24 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 1
+--- !u!143 &9033732011961048138
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4527782635703784387}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &9033732011961048133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1577,25 +1595,7 @@ MonoBehaviour:
     m_Bits: 2048
   isDashing: 0
   movement: {x: 0, y: 0, z: 0}
-  health: 100
---- !u!143 &9033732011961048138
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4527782635703784387}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  playerHealth: 0
 --- !u!114 &9033732011961048132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1958,7 +1958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a74f2bbc1a54b94bb4431469f6dea87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gSO: {fileID: 11400000, guid: f3bf7a5b4de7b0543bb61ef628320e6d, type: 2}
+  gunData: {fileID: 0}
   fpsCam: {fileID: 0}
   attackPoint: {fileID: 1683157515464494051}
   whatIsEnemy:
@@ -2158,7 +2158,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1831326, y: 1}
+    m_SensorSize: {x: 1.3333334, y: 1}
     Iso: 200
     ShutterSpeed: 0.005
     Aperture: 16
