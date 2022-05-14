@@ -8,6 +8,7 @@ TagManager:
   - Walls
   - AttackPoint
   - Range
+  - Destruct
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Enemy
   - Ground
   - Wall
-  - 
+  - Destructible
   - 
   - 
   - 

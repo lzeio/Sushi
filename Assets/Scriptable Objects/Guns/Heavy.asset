@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6661547846ea3d14db1f2d52f62a7a15, type: 3}
   m_Name: Heavy
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 100
   timeBetweenShooting: 0.5
   spreadX: 0.03
   spreadY: 0.04
@@ -24,7 +24,7 @@ MonoBehaviour:
   bulletsPerTap: 1
   totalBullets: 10000
   allowButtonHold: 0
-  bulletsLeft: 4990
+  bulletsLeft: 4993
   bulletsShot: 0
   positionalRecoilSpeed: 10
   rotationalRecoilSpeed: 10
@@ -33,6 +33,6 @@ MonoBehaviour:
   recoilRotation: {x: -20, y: 8, z: 12}
   recoilKickBack: {x: 0.03, y: 0.12, z: -0.4}
   soundDetectionRadius: 15
-  rotationalRecoil: {x: -0.0000000015789767, y: 6.3159045e-10, z: 9.473863e-10}
-  positionalRecoil: {x: 7.5849625e-18, y: 3.033985e-17, z: -1.0113288e-16}
-  rot: {x: -0.0000000028421585, y: 0.0000000011368629, z: 0.0000000017052951}
+  rotationalRecoil: {x: -0.01963511, y: 0.007854041, z: 0.011781058}
+  positionalRecoil: {x: 0.0000006614517, y: 0.0000026458067, z: -0.000008819354}
+  rot: {x: -0.035328727, y: 0.0141314855, z: 0.021197224}

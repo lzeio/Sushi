@@ -98,12 +98,18 @@ public class GunSystem : MonoBehaviour
         //RayCast
         if (Physics.Raycast(attackPoint.transform.position, direction, out rayHit, gunData.range, whatIsEnemy))
         {
-            if (rayHit.transform.gameObject.layer==10)
+            switch (rayHit.transform.gameObject.tag)
+
             {
-                rayHit.transform.GetComponentInParent<ZombieDeathDamage>().TakeDamage(gunData.damage);
-                Debug.Log("Called");
+                case "Zombie": rayHit.transform.GetComponent<ZombieDeathDamage>().TakeDamage(gunData.damage);
+                    break;
+                case "Destruct":  Debug.Log("GunShot");
+                    rayHit.transform.GetComponent<Destructo>().TakeDamage(gunData.damage);
+                    break;
+                default:
+                    break;
             }
-           
+
         }
 
         //Impacts
