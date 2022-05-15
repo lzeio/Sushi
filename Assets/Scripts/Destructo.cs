@@ -28,16 +28,18 @@ public class Destructo : MonoBehaviour
         health -= damage;
     }
 
-    public void GiveDamage(float damage)
+    public void GiveDamage(float hits)
     {
         Collider[] blastObjects = Physics.OverlapSphere(transform.position, blastRadius);
         foreach (Collider nearby in blastObjects)
         {
-            switch (nearby.transform.gameObject.layer)
-
+            switch (nearby.transform.gameObject.tag)
             {
-                case 10:
-                    nearby.transform.GetComponent<ZombieDeathDamage>().TakeDamage(damage);
+                case "Zombie":
+                    nearby.transform.GetComponent<ZombieDeathDamage>().TakeDamage(hits);
+                    break;
+                case "Player": 
+                    nearby.transform.GetComponent<PlayerDeathDamage>().TakeDamage(hits);
                     break;
                 default:
                     break;
@@ -47,7 +49,13 @@ public class Destructo : MonoBehaviour
 
     void Explosion()
     {
-        Debug.Log("Called");
+        Debug.Log("Boom");
         gameObject.GetComponent<MeshFilter>().mesh = meshFilterDestructo.GetComponent<MeshFilter>().sharedMesh;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;    
+        Gizmos.DrawSphere(transform.position, blastRadius); 
     }
 }
