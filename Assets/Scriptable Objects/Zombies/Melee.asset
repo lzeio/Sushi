@@ -23,6 +23,6 @@ MonoBehaviour:
   zombieStoppingDistance: 6
   isRanged: 0
   rangeAttackDistance: 0
-  projectile: {fileID: 100000, guid: b731b0394cedacb4aa1d319e685ec216, type: 3}
+  projectile: {fileID: 0}
   projectileSpeed: 0
   timeBetweenAttacks: 0

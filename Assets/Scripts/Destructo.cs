@@ -38,6 +38,9 @@ public class Destructo : MonoBehaviour
                 case "Zombie":
                     nearby.transform.GetComponent<ZombieDeathDamage>().TakeDamage(hits);
                     break;
+                case "Range":
+                    nearby.transform.GetComponent<ZombieDeathDamage>().TakeDamage(hits);
+                    break;
                 case "Player": 
                     nearby.transform.GetComponent<PlayerDeathDamage>().TakeDamage(hits);
                     break;
@@ -55,7 +58,7 @@ public class Destructo : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;    
+        Gizmos.color = Color.cyan;
         Gizmos.DrawSphere(transform.position, blastRadius); 
     }
 }
