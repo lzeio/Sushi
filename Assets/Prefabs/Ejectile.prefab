@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8207893153237501892}
   - component: {fileID: 8207893153237501893}
   - component: {fileID: -2075673634308691946}
+  - component: {fileID: -2749061263097481202}
   m_Layer: 0
   m_Name: Ejectile
   m_TagString: Untagged
@@ -114,3 +115,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-2749061263097481202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8207893153237501914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07022d9f5092dc142940fa1189adad36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 2
+  explosionEffect: {fileID: 0}
+  blastRadius: 20
+  explosion: 700
+  hits: 50
+  halfBlastRadius: 10

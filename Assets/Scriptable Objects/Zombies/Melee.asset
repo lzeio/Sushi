@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FOV: 120
   walkPointRange: 50
-  zomHealth: 20
+  zomHealth: 100
   zombieAttackDamage: 20
   awarenessDistance: 15
   zombieWanderSpeed: 0.25
