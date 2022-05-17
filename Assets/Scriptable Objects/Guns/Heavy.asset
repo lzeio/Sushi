@@ -19,12 +19,12 @@ MonoBehaviour:
   range: 100
   reloadTime: 3
   timeBetweenShots: 0.02
-  magazineSize: 5000
+  magazineSize: 30
   totalMags: 2
   bulletsPerTap: 1
-  totalBullets: 10000
-  allowButtonHold: 0
-  bulletsLeft: 4993
+  totalBullets: 0
+  allowButtonHold: 1
+  bulletsLeft: 0
   bulletsShot: 0
   positionalRecoilSpeed: 10
   rotationalRecoilSpeed: 10
@@ -33,6 +33,6 @@ MonoBehaviour:
   recoilRotation: {x: -20, y: 8, z: 12}
   recoilKickBack: {x: 0.03, y: 0.12, z: -0.4}
   soundDetectionRadius: 15
-  rotationalRecoil: {x: -0.01963511, y: 0.007854041, z: 0.011781058}
-  positionalRecoil: {x: 0.0000006614517, y: 0.0000026458067, z: -0.000008819354}
-  rot: {x: -0.035328727, y: 0.0141314855, z: 0.021197224}
+  rotationalRecoil: {x: -0.00030415138, y: 0.00012166056, z: 0.0001824909}
+  positionalRecoil: {x: 0.0000000010070749, y: 0.0000000040282995, z: -0.0000000134276625}
+  rot: {x: -0.0005474705, y: 0.00021898825, z: 0.00032848248}

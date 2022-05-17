@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 public class GunSystem : MonoBehaviour
 {
-    [SerializeField] private GunData gunData;
+    [SerializeField] public GunData gunData;
 
     
 
@@ -118,7 +118,7 @@ public class GunSystem : MonoBehaviour
         //Destroy(mFlash, .5f);
         gunData.bulletsLeft--;
         gunData.bulletsShot--;
-        //totalBullets--;
+        gunData.totalBullets--;
         
         Invoke("ResetShot", gunData.timeBetweenShooting);
 

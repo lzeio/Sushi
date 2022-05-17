@@ -36,9 +36,9 @@ public class Pickups : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 distanceToPLayer = player.position - transform.position; 
+        Vector3 distanceToPlayer = player.position - transform.position; 
 
-        if(!equipped && distanceToPLayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E))
+        if(!equipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E))
         {
             PickUp();
         }

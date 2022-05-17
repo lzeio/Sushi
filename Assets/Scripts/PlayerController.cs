@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Components")]
     public CharacterController cc;
-    public ZombieData zombieData;
 
     [Header("Player Data")]
     public float playerSpeed = 12f;
