@@ -29,6 +29,7 @@ public class PlayerDeathDamage : MonoBehaviour
     public void TakeDamage(float damagee)
     {
         playerHealth -= damagee;
+        Healthbar.instance.TakeDamage(damagee);
         if (playerHealth <= 0)
         {
             Death();

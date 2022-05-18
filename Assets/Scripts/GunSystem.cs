@@ -27,7 +27,7 @@ public class GunSystem : MonoBehaviour
 
     //Graphics
     //public GameObject flash, bulletHoleGraphic;
-    //public TextMeshProUGUI txt;
+    public TextMeshProUGUI txt;
     //public static GunSystem Instance;
 
 
@@ -37,8 +37,6 @@ public class GunSystem : MonoBehaviour
 
     private void Awake()
     {
-        gunData.bulletsLeft = gunData.magazineSize;
-        gunData.totalBullets = gunData.magazineSize * gunData.totalMags;
         readyToShoot = true;
        // Instance = this;
     }
@@ -51,7 +49,7 @@ public class GunSystem : MonoBehaviour
     {
         MyInput();
         //Ammo
-        // txt.SetText(bulletsLeft + " / " + totalBullets);
+        txt.SetText(gunData.bulletsLeft.ToString());
 
     }
 
@@ -72,8 +70,6 @@ public class GunSystem : MonoBehaviour
        
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
-        
-        if (Input.GetKeyDown(KeyCode.R) && gunData.bulletsLeft / gunData.totalMags < gunData.magazineSize / gunData.totalMags && !reloading) Reload();
 
         //Shoot
         if (readyToShoot && shooting && !reloading && gunData.bulletsLeft > 0)
@@ -118,7 +114,6 @@ public class GunSystem : MonoBehaviour
         //Destroy(mFlash, .5f);
         gunData.bulletsLeft--;
         gunData.bulletsShot--;
-        gunData.totalBullets--;
         
         Invoke("ResetShot", gunData.timeBetweenShooting);
 
@@ -130,20 +125,7 @@ public class GunSystem : MonoBehaviour
     {
         readyToShoot = true;
     }
-    private void Reload()
-    {
-        reloading = true;
-        Invoke("ReloadFinished", gunData.reloadTime);
-    }
-    private void ReloadFinished()
-    {
-        if (gunData.totalBullets >= gunData.magazineSize)
-            gunData.bulletsLeft = gunData.magazineSize;
-        else if(gunData.totalBullets < gunData.magazineSize)
-            gunData.bulletsLeft = gunData.totalBullets;
-        reloading = false;
-    }
-
+   
     void Recoil()
     {
         gunData.rotationalRecoil += new Vector3(gunData.recoilRotation.x, UnityEngine.Random.Range(gunData.recoilRotation.y, gunData.recoilRotation.y), UnityEngine.Random.Range(gunData.recoilRotation.z, gunData.recoilRotation.z));

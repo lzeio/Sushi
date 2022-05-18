@@ -28,7 +28,7 @@ public class AmmoPickUp : MonoBehaviour
 
     public void PickUpAmmo()
     {
-        gunScript.gunData.totalBullets += addedAmmo;
+        gunScript.gunData.bulletsLeft += addedAmmo;
         gameObject.SetActive(false  );
     }
 

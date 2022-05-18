@@ -28,6 +28,7 @@ public class HealthPickUp : MonoBehaviour
     void PickUpHealth()
     {
         player.GetComponent<PlayerDeathDamage>().playerHealth += addedHealth;
+        Healthbar.instance.Heal(addedHealth);
         gameObject.SetActive(false);    
     }
 }

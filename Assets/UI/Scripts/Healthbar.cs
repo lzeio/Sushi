@@ -12,7 +12,13 @@ public class Healthbar : MonoBehaviour
  public Image frontHealthBar;
  public Image backHealthBar;
 
- void Start()
+public static Healthbar instance;
+
+    private void Awake()
+    {
+        instance = this;    
+    }
+    void Start()
  {
     health = maxHealth;
  }
@@ -20,14 +26,14 @@ public class Healthbar : MonoBehaviour
  {
      health = Mathf.Clamp(health, 0, maxHealth);
      UpdateHealthUI();
-     if(Input.GetKeyDown(KeyCode.A))
-     {
-        TakeDamage(Random.Range(5, 10));
-     }
-     if(Input.GetKeyDown(KeyCode.S))
-     {
-        Heal(Random.Range(5, 10));
-     }
+     //if(Input.GetKeyDown(KeyCode.A))
+     //{
+     //   TakeDamage(Random.Range(5, 10));
+     //}
+     //if(Input.GetKeyDown(KeyCode.S))
+     //{
+     //   Heal(Random.Range(5, 10));
+     //}
  }
  public void UpdateHealthUI()
  {

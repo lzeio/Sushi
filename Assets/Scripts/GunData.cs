@@ -9,9 +9,8 @@ public class GunData : ScriptableObject
 {
     [Header("Gun Data")]
     public int damage;
-    public float timeBetweenShooting, spreadX, spreadY, range, reloadTime, timeBetweenShots;
-    public int magazineSize, totalMags, bulletsPerTap;
-    public int totalBullets;
+    public float timeBetweenShooting, spreadX, spreadY, range, timeBetweenShots;
+    public int bulletsPerTap;
     public bool allowButtonHold;
     public int bulletsLeft, bulletsShot;
 
