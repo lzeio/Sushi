@@ -73,7 +73,7 @@ public class Destructo : MonoBehaviour
                 default:
                     break;
             }
-        }
+        }   
     }
 
     void Explosion()
