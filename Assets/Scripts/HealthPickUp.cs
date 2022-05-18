@@ -19,7 +19,7 @@ public class HealthPickUp : MonoBehaviour
     {
         Vector3 distanceFromPlayer = player.position - transform.position;
 
-        if (distanceFromPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E))
+        if (distanceFromPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && PlayerDeathDamage.playerDeathDamageInstance.playerHealth<Healthbar.instance.maxHealth)
         {
             PickUpHealth();
         }
