@@ -94,6 +94,7 @@ public class GunSystem : MonoBehaviour
         //RayCast
         if (Physics.Raycast(attackPoint.transform.position, direction, out rayHit, gunData.range, whatIsEnemy))
         {
+            Debug.Log(rayHit.transform.name);
             switch (rayHit.transform.gameObject.tag)
 
             {
@@ -101,6 +102,8 @@ public class GunSystem : MonoBehaviour
                     break;
                 case "Destruct":  Debug.Log("GunShot");
                     rayHit.transform.GetComponent<Destructo>().TakeDamage(gunData.damage);
+                    break;
+                case "Range": rayHit.transform.GetComponent<ZombieDeathDamage>().TakeDamage(gunData.damage);
                     break;
                 default:
                     break;
@@ -141,4 +144,6 @@ public class GunSystem : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, gunData.soundDetectionRadius);
     }
+
+
 }

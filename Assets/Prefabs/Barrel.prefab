@@ -114,4 +114,5 @@ MonoBehaviour:
   hits: 100
   health: 100
   blastRadius: 25
-  meshFilterDestructo: {fileID: 0}
+  halfBlastRadius: 0
+  meshFilterDestructo: {fileID: 100000, guid: 77b094fe0f9860f48b1a61d6c4d80e9f, type: 3}

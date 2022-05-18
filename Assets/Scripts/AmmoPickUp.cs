@@ -32,5 +32,10 @@ public class AmmoPickUp : MonoBehaviour
         gameObject.SetActive(false  );
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, pickupRange);
+    }
 
 }

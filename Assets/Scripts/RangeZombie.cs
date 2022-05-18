@@ -26,6 +26,7 @@ public class RangeZombie : MonoBehaviour
 
     private void Awake()
     {
+        inRange = false;
         animRange = GetComponent<Animator>();   
         rangeAgent = GetComponent<NavMeshAgent>();
         rangeAgent.stoppingDistance = rangeData.zombieStoppingDistance;
@@ -136,5 +137,11 @@ public class RangeZombie : MonoBehaviour
     void ResetAttack()
     {
         alreadyAttacked=false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;    
+        Gizmos.DrawSphere(transform.position,rangeData.rangeAttackDistance);
     }
 }

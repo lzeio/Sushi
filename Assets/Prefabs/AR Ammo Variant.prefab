@@ -17,6 +17,11 @@ PrefabInstance:
       propertyPath: gunScript
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7065072351322347376, guid: bab7f2b50d34d4749b63864905dcef31,
+        type: 3}
+      propertyPath: pickupRange
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7065072351322347379, guid: bab7f2b50d34d4749b63864905dcef31,
         type: 3}
       propertyPath: m_RootOrder
@@ -75,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 7065072351322347383, guid: bab7f2b50d34d4749b63864905dcef31,
         type: 3}
       propertyPath: m_Name
-      value: AR Ammo
+      value: AR Ammo Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bab7f2b50d34d4749b63864905dcef31, type: 3}
