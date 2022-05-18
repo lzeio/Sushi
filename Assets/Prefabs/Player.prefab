@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a74f2bbc1a54b94bb4431469f6dea87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gSO: {fileID: 11400000, guid: f3bf7a5b4de7b0543bb61ef628320e6d, type: 2}
+  gunData: {fileID: 0}
   fpsCam: {fileID: 0}
   attackPoint: {fileID: 6388697655571230058}
   whatIsEnemy:
@@ -775,7 +775,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3909347909818612287, guid: c6aee3844fb797b409891c6536a4cce6, type: 3}
+  - {fileID: 2100000, guid: e1d78e8cfdb79be49ad6ceb226a8ed45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -985,7 +985,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3909347909818612287, guid: c6aee3844fb797b409891c6536a4cce6, type: 3}
+  - {fileID: 2100000, guid: e1d78e8cfdb79be49ad6ceb226a8ed45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1258,7 +1258,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3909347909818612287, guid: c6aee3844fb797b409891c6536a4cce6, type: 3}
+  - {fileID: 2100000, guid: e1d78e8cfdb79be49ad6ceb226a8ed45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1373,7 +1373,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3909347909818612287, guid: c6aee3844fb797b409891c6536a4cce6, type: 3}
+  - {fileID: 2100000, guid: e1d78e8cfdb79be49ad6ceb226a8ed45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1614,7 +1614,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3909347909818612287, guid: c6aee3844fb797b409891c6536a4cce6, type: 3}
+  - {fileID: 2100000, guid: e1d78e8cfdb79be49ad6ceb226a8ed45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2305,7 +2305,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3909347909818612287, guid: c6aee3844fb797b409891c6536a4cce6, type: 3}
+  - {fileID: 2100000, guid: e1d78e8cfdb79be49ad6ceb226a8ed45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2656,18 +2656,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cc: {fileID: 3651490322191006403}
-  zz: {fileID: 0}
   playerSpeed: 12
   gravity: -9.81
   jumpHeight: 3
+  movement: {x: 0, y: 0, z: 0}
   groundCheck: {fileID: 6388697655046744276}
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
     m_Bits: 2048
   isDashing: 0
-  movement: {x: 0, y: 0, z: 0}
-  health: 100
 --- !u!143 &3651490322191006403
 CharacterController:
   m_ObjectHideFlags: 0

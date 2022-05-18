@@ -219,7 +219,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7a1e5d598e711e5469eab9ecd0e1859e, type: 2}
+  - {fileID: 2100000, guid: e1d78e8cfdb79be49ad6ceb226a8ed45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -879,7 +879,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7a1e5d598e711e5469eab9ecd0e1859e, type: 2}
+  - {fileID: 2100000, guid: e1d78e8cfdb79be49ad6ceb226a8ed45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1222,7 +1222,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7a1e5d598e711e5469eab9ecd0e1859e, type: 2}
+  - {fileID: 2100000, guid: e1d78e8cfdb79be49ad6ceb226a8ed45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1603,7 +1603,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cc: {fileID: 9033732011961048138}
-  zombieData: {fileID: 0}
   playerSpeed: 12
   gravity: -9.81
   jumpHeight: 3
@@ -1658,6 +1657,7 @@ MonoBehaviour:
   throwForce: 10
   grenade: {fileID: 8207893153237501914, guid: a8f9861a5b743f748a8b5d4ff6a0b336, type: 3}
   attackpoint: {fileID: 1683157515464494051}
+  grenadeCounter: 0
 --- !u!1 &4738596713135612395
 GameObject:
   m_ObjectHideFlags: 0
@@ -2488,7 +2488,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7a1e5d598e711e5469eab9ecd0e1859e, type: 2}
+  - {fileID: 2100000, guid: e1d78e8cfdb79be49ad6ceb226a8ed45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2665,7 +2665,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7a1e5d598e711e5469eab9ecd0e1859e, type: 2}
+  - {fileID: 2100000, guid: e1d78e8cfdb79be49ad6ceb226a8ed45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2938,7 +2938,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7a1e5d598e711e5469eab9ecd0e1859e, type: 2}
+  - {fileID: 2100000, guid: e1d78e8cfdb79be49ad6ceb226a8ed45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
