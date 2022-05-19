@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: RPG
   m_EditorClassIdentifier: 
   damage: 100
-  timeBetweenShooting: 2
+  timeBetweenShooting: 0.2
   spreadX: 0.03
   spreadY: 0.04
   range: 100
   timeBetweenShots: 0.02
   bulletsPerTap: 1
   allowButtonHold: 0
-  bulletsLeft: 100
-  bulletsShot: 2
+  bulletsLeft: 65
+  bulletsShot: 1
   positionalRecoilSpeed: 10
   rotationalRecoilSpeed: 10
   positionalReturnSpeed: 7.5

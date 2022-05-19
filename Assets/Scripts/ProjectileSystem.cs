@@ -75,7 +75,7 @@ public class ProjectileSystem : MonoBehaviour
 
         currentBullet.transform.forward = directionWithSpread.normalized;
 
-        currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
+        currentBullet.GetComponentInChildren<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
        // currentBullet.GetComponent<Rigidbody>().AddForce(camera.transform.up*upwardForce,ForceMode.Impulse);
 
         gunData.bulletsShot++;

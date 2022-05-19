@@ -11,7 +11,7 @@ public class Zombie : MonoBehaviour
     
     [Header("Player")]
     public PlayerController player;
-
+    public Transform lookAtTarget;
 
 
     [Header("Wandering")]
@@ -91,7 +91,7 @@ public class Zombie : MonoBehaviour
     {
        
         animZom.SetTrigger("Chasing");
-        transform.LookAt(player.transform);
+        StartCoroutine(LookAt());
         agent.speed = zombieData.zombieChaseSpeed;
         agent.SetDestination(player.transform.position);
     }
@@ -155,7 +155,7 @@ public class Zombie : MonoBehaviour
     {
         if (Vector3.Distance(player.transform.position, transform.position) <= zombieData.attackDistance)
         {
-            animZom.SetBool("Attacking", true);
+            //animZom.SetBool("Attacking", true);
         }
         else return;
     }
@@ -171,4 +171,26 @@ public class Zombie : MonoBehaviour
         Gizmos.DrawRay(transform.position, leftRayDirection * rayRange);
         Gizmos.DrawRay(transform.position, rightRayDirection * rayRange);
     }
+
+    public Transform Target;
+    public float Speed = 1f;
+
+
+    private IEnumerator LookAt()
+    {
+        Quaternion lookRotation = Quaternion.LookRotation(Target.position - transform.position);
+
+        float time = 0;
+
+        Quaternion initialRotation = transform.rotation;
+        while (time < 1)
+        {
+            transform.rotation = Quaternion.Slerp(initialRotation, lookRotation, time);
+
+            time += Time.deltaTime * Speed;
+
+            yield return null;
+        }
+    }
 }
+

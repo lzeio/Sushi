@@ -750,9 +750,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fdd79307c9d6b041b50ca0e1d0fed6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zOS: {fileID: 11400000, guid: 842a0730498e2aa4abfb14107fa85f03, type: 2}
+  zombieData: {fileID: 0}
   sp: {fileID: 4183857306935495174}
-  damage: 0
 --- !u!1 &6839092887881586000
 GameObject:
   m_ObjectHideFlags: 0
@@ -2607,6 +2606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zombieData: {fileID: 11400000, guid: 842a0730498e2aa4abfb14107fa85f03, type: 2}
   player: {fileID: 0}
+  lookAtTarget: {fileID: 0}
   walkPoint: {x: 0, y: 0, z: 0}
   isAware: 0
   attackBodyPart: {fileID: 6839092887877173415}
