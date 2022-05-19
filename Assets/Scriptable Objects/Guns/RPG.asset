@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6661547846ea3d14db1f2d52f62a7a15, type: 3}
+  m_Name: RPG
+  m_EditorClassIdentifier: 
+  damage: 100
+  timeBetweenShooting: 2
+  spreadX: 0.03
+  spreadY: 0.04
+  range: 100
+  timeBetweenShots: 0.02
+  bulletsPerTap: 1
+  allowButtonHold: 0
+  bulletsLeft: 100
+  bulletsShot: 2
+  positionalRecoilSpeed: 10
+  rotationalRecoilSpeed: 10
+  positionalReturnSpeed: 7.5
+  rotationalReturnSpeed: 5
+  recoilRotation: {x: -20, y: 8, z: 12}
+  recoilKickBack: {x: 0.03, y: 0.12, z: -0.4}
+  soundDetectionRadius: 15
+  rotationalRecoil: {x: -0.0000064494834, y: 0.0000025797924, z: 0.000003869687}
+  positionalRecoil: {x: 2.852132e-12, y: 1.1408528e-11, z: -3.802842e-11}
+  rot: {x: -0.00001160907, y: 0.0000046436276, z: 0.0000069654366}

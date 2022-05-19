@@ -1,0 +1,12 @@
+Combat Bare Fist Animset
+- Crushing Fists_RM
+- GetBackUpBackCombat
+-SmashingFists
+-Taunt1
+-Taunt2
+
+Creature Animset
+- Most of the Animation
+
+Zombie Animset
+-All of the Animation
