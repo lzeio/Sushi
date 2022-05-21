@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float playerSpeed = 12f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
+    public float doubleJumpMultiplier = 1f;   
     
     public Vector3 movement;
     private Vector3 velocity;
@@ -24,7 +25,7 @@ public class PlayerController : MonoBehaviour
     [Header("Bool")]
     public bool isDashing;
     private bool isGrounded;
-
+    private bool doubleJump = false;
 
 
 
@@ -45,9 +46,21 @@ public class PlayerController : MonoBehaviour
 
         cc.Move(movement * Time.deltaTime * playerSpeed);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+       if(isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            doubleJump = true;
+            if (Input.GetButtonDown("Jump"))
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            }
+        }
+       else
+        {
+            if (Input.GetButtonDown("Jump") && doubleJump)
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * doubleJumpMultiplier * -2f * gravity);
+                doubleJump = false;
+            }
         }
 
         velocity.y += gravity * Time.deltaTime;
