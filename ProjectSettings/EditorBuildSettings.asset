@@ -9,5 +9,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Test_Level.unity
     guid: 0d221c3de54457c40881395aeefafb20
   m_configObjects:
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 9511b055dbb7d5848a7fb13fc24a3361,
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1ed96083447cedd41a5e4d9d66b61a00,
       type: 2}

@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 public class Zombie : MonoBehaviour
@@ -7,22 +6,24 @@ public class Zombie : MonoBehaviour
     private NavMeshAgent agent;
     private Animator animZom;
     public ZombieData zombieData;
-    
-    
+
+
     [Header("Player")]
     public PlayerController player;
-    public Transform lookAtTarget;
 
 
     [Header("Wandering")]
     public Vector3 walkPoint;
     bool walkPointSet;
+    Vector3 point;
 
-  
+
     [Header("Attacking")]
     public bool isAware = false;
+    public bool alreadyAttacking = false;
     public GameObject attackBodyPart;
-
+    public float distanceToPlayer;
+  
 
 
     [Header("Misc")]
@@ -30,22 +31,27 @@ public class Zombie : MonoBehaviour
     public Vector3 enemyDestination;
 
 
- 
 
     private void Awake()
     {
+        
         agent = GetComponent<NavMeshAgent>();
         animZom = GetComponent<Animator>();
         agent.stoppingDistance = zombieData.zombieStoppingDistance;
     }
-    
+
     void Update()
     {
+
         if (isAware)
         {
-            Attack();
-            ChasePlayer();
 
+            if (!alreadyAttacking)
+            {
+                Attack();
+
+            }
+            ChasePlayer();
         }
         else
         {
@@ -55,11 +61,15 @@ public class Zombie : MonoBehaviour
 
         remainingDistance = agent.remainingDistance;
         enemyDestination = agent.destination;
+        distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
+        point = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
     }
 
     public void OnAware()
     {
         isAware = true;
+
     }
 
 
@@ -83,17 +93,17 @@ public class Zombie : MonoBehaviour
         }
 
     }
-    
+
 
 
 
     void ChasePlayer()
     {
-       
-        animZom.SetTrigger("Chasing");
-        StartCoroutine(LookAt());
+        animZom.SetBool("Chasing", true);
+        transform.LookAt(point);
         agent.speed = zombieData.zombieChaseSpeed;
         agent.SetDestination(player.transform.position);
+        Debug.Log("Chasing");
     }
 
 
@@ -150,16 +160,47 @@ public class Zombie : MonoBehaviour
     public void DeactivateFist()
     {
         attackBodyPart.GetComponent<SphereCollider>().enabled = false;
+        Debug.Log("Called");
+    }
+
+    public void Lab()
+    {
+        Debug.Log("Har");
+        alreadyAttacking = false;
     }
     void Attack()
     {
-        if (Vector3.Distance(player.transform.position, transform.position) <= zombieData.attackDistance)
+
+        if (distanceToPlayer <= zombieData.attackDistance && !alreadyAttacking)
         {
-            //animZom.SetBool("Attacking", true);
+            alreadyAttacking = true;
+            animZom.SetFloat("Attack", Random.Range(0f, 3f));
+            animZom.SetBool("Chasing", false);
+            Debug.Log("Attacking");
         }
-        else return;
+        else
+        {
+            animZom.SetFloat("Attack", 0f);
+            ChasePlayer();
+            alreadyAttacking = false;
+
+        }
     }
-    
+
+    float RandomGenerator()
+    {
+        return Random.Range(0, 3f);
+    }
+
+    void LookAtClamps()
+    {
+
+        var lookPos = player.transform.position - transform.position;
+        lookPos.y = 0;
+        var rotation = Quaternion.LookRotation(lookPos);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
+
+    }
     private void OnDrawGizmos()
     {
         float rayRange = zombieData.awarenessDistance;
@@ -170,27 +211,10 @@ public class Zombie : MonoBehaviour
         Vector3 rightRayDirection = rightRayRotation * transform.forward;
         Gizmos.DrawRay(transform.position, leftRayDirection * rayRange);
         Gizmos.DrawRay(transform.position, rightRayDirection * rayRange);
-    }
-
-    public Transform Target;
-    public float Speed = 1f;
 
 
-    private IEnumerator LookAt()
-    {
-        Quaternion lookRotation = Quaternion.LookRotation(Target.position - transform.position);
-
-        float time = 0;
-
-        Quaternion initialRotation = transform.rotation;
-        while (time < 1)
-        {
-            transform.rotation = Quaternion.Slerp(initialRotation, lookRotation, time);
-
-            time += Time.deltaTime * Speed;
-
-            yield return null;
-        }
+        Gizmos.color = Color.gray;
+        Gizmos.DrawSphere(transform.position, zombieData.attackDistance);
     }
 }
 

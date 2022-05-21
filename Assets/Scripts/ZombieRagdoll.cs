@@ -42,6 +42,7 @@ public class ZombieRagdoll : MonoBehaviour
             if (!r.CompareTag("Zombie"))
             {
                 r.isKinematic = true;
+                
             }
         }
     }

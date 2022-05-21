@@ -1,0 +1,6 @@
+Issues With Zombie AI
+
+1. Melee
+- Animation Wobbles
+- Goes Horizontal on Jump(LOOKAT )
+- Need More Animation

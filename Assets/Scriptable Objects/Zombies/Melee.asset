@@ -19,8 +19,8 @@ MonoBehaviour:
   awarenessDistance: 15
   zombieWanderSpeed: 0.25
   zombieChaseSpeed: 1
-  attackDistance: 7.5
-  zombieStoppingDistance: 6
+  attackDistance: 5
+  zombieStoppingDistance: 10
   isRanged: 0
   rangeAttackDistance: 0
   projectile: {fileID: 0}
