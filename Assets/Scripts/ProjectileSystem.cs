@@ -44,7 +44,7 @@ public class ProjectileSystem : MonoBehaviour
         if(readyToShoot && shooting && gunData.bulletsLeft>0)
         {
             gunData.bulletsShot = 0;
-            Debug.Log("Called");
+            
             Shoot();
         }
       

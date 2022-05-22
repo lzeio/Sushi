@@ -545,7 +545,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2954349046457193299}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.20468593, y: 0.2343379, z: 1}
@@ -614,7 +614,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1420233, y: 1}
+    m_SensorSize: {x: 1.9163424, y: 1}
     Iso: 200
     ShutterSpeed: 0.005
     Aperture: 16
@@ -1029,7 +1029,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7827441480679715237}
-  - component: {fileID: 1833062223716125758}
   - component: {fileID: 1833062223716125759}
   - component: {fileID: 7218736973056388770}
   - component: {fileID: 1833062223716125744}
@@ -1062,21 +1061,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!111 &1833062223716125758
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6556099038322918326}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 1
 --- !u!143 &1833062223716125759
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2142,7 +2126,7 @@ MonoBehaviour:
     m_Bits: 1024
   recoilPosition: {fileID: 7218736971939132354}
   rotationPoint: {fileID: 7218736972971786643}
-  txt: {fileID: 0}
+  txt: {fileID: 1649613774}
 --- !u!82 &7911427190784564618
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2247,7 +2231,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7386142745664210750}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.20468593, y: 0.2343379, z: 0.56296265}

@@ -21,7 +21,7 @@ public class RangeZombie : MonoBehaviour
     public bool inRange;
     public bool alreadyAttacked;
     public float timeBetweenAttacks;
-  
+    Vector3 point;
     public Transform attackPoint;
 
     private void Awake()
@@ -40,8 +40,8 @@ public class RangeZombie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        if(inRange)
+
+        if (inRange)
         {
             RangeChase();
             RangeAttack();
@@ -51,10 +51,12 @@ public class RangeZombie : MonoBehaviour
             Wandering();
             SearchForPlayer();
         }
+
+        point = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
     }
 
 
-    public void InRange()
+        public void InRange()
     {
         inRange = true;
     }
@@ -120,11 +122,9 @@ public class RangeZombie : MonoBehaviour
     }
     public void RangeAttack()
     {
-        transform.LookAt(player.transform);
+        transform.LookAt(point);
         if(!alreadyAttacked)
         {
-            Debug.Log("called");
-
             Rigidbody rb =Instantiate(rangeData.projectile, attackPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward *32f,ForceMode.Impulse);
             rb.AddForce(transform.up *8f,ForceMode.Impulse);

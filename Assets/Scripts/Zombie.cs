@@ -45,13 +45,8 @@ public class Zombie : MonoBehaviour
 
         if (isAware)
         {
-
-            if (!alreadyAttacking)
-            {
-                Attack();
-
-            }
             ChasePlayer();
+            Attack();
         }
         else
         {
@@ -97,14 +92,6 @@ public class Zombie : MonoBehaviour
 
 
 
-    void ChasePlayer()
-    {
-        animZom.SetBool("Chasing", true);
-        transform.LookAt(point);
-        agent.speed = zombieData.zombieChaseSpeed;
-        agent.SetDestination(player.transform.position);
-        Debug.Log("Chasing");
-    }
 
 
 
@@ -125,6 +112,7 @@ public class Zombie : MonoBehaviour
                 else
                 {
                     agent.destination = walkPoint;
+                    transform.LookAt(walkPoint);
                     animZom.SetTrigger("Walking");
                     agent.speed = zombieData.zombieWanderSpeed;
                 }
@@ -160,47 +148,44 @@ public class Zombie : MonoBehaviour
     public void DeactivateFist()
     {
         attackBodyPart.GetComponent<SphereCollider>().enabled = false;
+    
+    }
+
+    public void ClipEnd()
+    {
+        alreadyAttacking = false;
         Debug.Log("Called");
     }
 
     public void Lab()
     {
-        Debug.Log("Har");
         alreadyAttacking = false;
+    }
+    void ChasePlayer()
+    {
+        transform.LookAt(point);
+        if(!alreadyAttacking)
+        {
+            animZom.SetBool("Chasing", true);
+            animZom.SetBool("Attacking", false);
+            agent.SetDestination(player.transform.position);
+            agent.speed = zombieData.zombieChaseSpeed;
+            Debug.Log("Chasing");
+        }
     }
     void Attack()
     {
-
+        transform.LookAt(point);
         if (distanceToPlayer <= zombieData.attackDistance && !alreadyAttacking)
         {
-            alreadyAttacking = true;
-            animZom.SetFloat("Attack", Random.Range(0f, 3f));
+            animZom.SetFloat("Attack", Random.Range(0f, 1f));
+            animZom.SetBool("Attacking", true);
             animZom.SetBool("Chasing", false);
             Debug.Log("Attacking");
-        }
-        else
-        {
-            animZom.SetFloat("Attack", 0f);
-            ChasePlayer();
-            alreadyAttacking = false;
-
-        }
+        } 
+            alreadyAttacking=true;
     }
-
-    float RandomGenerator()
-    {
-        return Random.Range(0, 3f);
-    }
-
-    void LookAtClamps()
-    {
-
-        var lookPos = player.transform.position - transform.position;
-        lookPos.y = 0;
-        var rotation = Quaternion.LookRotation(lookPos);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
-
-    }
+   
     private void OnDrawGizmos()
     {
         float rayRange = zombieData.awarenessDistance;

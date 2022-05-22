@@ -24,9 +24,18 @@ public class ZombieDeathDamage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(health);
+       
     }
 
+
+    public void TakeDamage(float damagee)
+    {
+        health -= damagee;
+        if (health <= 0)
+        {
+            Death();
+        }
+    }
     public void Death()
     {
         Debug.Log("Dead");
@@ -35,18 +44,9 @@ public class ZombieDeathDamage : MonoBehaviour
         ZombieRagdoll.zomRagInstance.RagdollON();
         StartCoroutine(WaitForDeath());
     }
-
     IEnumerator WaitForDeath()
     {
         yield return new WaitForSeconds(1f);
         gameObject.SetActive(false);
-    }
-    public void TakeDamage(float damagee)
-    {
-        health -= damagee;
-        if (health <= 0)
-        {
-            Death();
-        }
     }
 }

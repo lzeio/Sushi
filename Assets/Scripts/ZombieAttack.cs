@@ -17,14 +17,16 @@ public class ZombieAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(damage);
+       
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerDeathDamage>().TakeDamage(damage);
+            Debug.Log(other.gameObject.transform.name);
+            other.gameObject.GetComponentInParent<PlayerDeathDamage>().TakeDamage(damage);
         }
     }
 
