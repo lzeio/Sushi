@@ -178,12 +178,12 @@ public class Zombie : MonoBehaviour
         transform.LookAt(point);
         if (distanceToPlayer <= zombieData.attackDistance && !alreadyAttacking)
         {
-            animZom.SetFloat("Attack", Random.Range(0f, 1f));
+            animZom.SetFloat("Attack", Random.Range(0f, 3f));
             animZom.SetBool("Attacking", true);
             animZom.SetBool("Chasing", false);
             Debug.Log("Attacking");
+            //alreadyAttacking=true;
         } 
-            alreadyAttacking=true;
     }
    
     private void OnDrawGizmos()

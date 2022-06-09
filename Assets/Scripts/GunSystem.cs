@@ -82,6 +82,8 @@ public class GunSystem : MonoBehaviour
     }
     private void Shoot()
     {
+        //add shooting audio here
+
         readyToShoot = false;
 
         //Spread

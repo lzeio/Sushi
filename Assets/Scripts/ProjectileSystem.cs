@@ -53,6 +53,9 @@ public class ProjectileSystem : MonoBehaviour
 
     void Shoot()
     {
+
+        //add audio here
+
         pseudoProjectle.SetActive(false);
         readyToShoot=false;
 
@@ -76,7 +79,7 @@ public class ProjectileSystem : MonoBehaviour
         currentBullet.transform.forward = directionWithSpread.normalized;
 
         currentBullet.GetComponentInChildren<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
-       // currentBullet.GetComponent<Rigidbody>().AddForce(camera.transform.up*upwardForce,ForceMode.Impulse);
+       //currentBullet.GetComponent<Rigidbody>().AddForce(camera.transform.up*upwardForce,ForceMode.Impulse);
 
         gunData.bulletsShot++;
         gunData.bulletsLeft--;
