@@ -27,7 +27,8 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool doubleJump = false;
 
-
+    public float x;
+    public float z;
 
     
     public static PlayerController playerInstance;
@@ -38,9 +39,11 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+         x = Input.GetAxis("Horizontal");
+         z = Input.GetAxis("Vertical");
         isDashing = Input.GetKeyDown(KeyCode.LeftShift);
+
+        Debug.Log(x);
 
         movement = transform.right * x + transform.forward * z;
 

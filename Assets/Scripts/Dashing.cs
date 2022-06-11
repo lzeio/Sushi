@@ -10,6 +10,12 @@ public class Dashing : MonoBehaviour
     public float dashSpeed = 40f; //speed of dash
     public float dashTime = 0.5f; //time of dash
     // Start is called before the first frame update
+
+
+    [SerializeField] ParticleSystem forwardDashParticles;
+    [SerializeField] ParticleSystem backwardDashParticles;
+    [SerializeField] ParticleSystem leftDashParticles;
+    [SerializeField] ParticleSystem RightDashParticles;
     void Start()
     {
         controllerScript = GetComponent<PlayerController>();
@@ -30,9 +36,32 @@ public class Dashing : MonoBehaviour
     {
         float startTime = Time.time;
         while (Time.time - startTime < dashTime)
-        {
+        {       
             controllerScript.cc.Move(controllerScript.movement * dashSpeed * Time.deltaTime);
             yield return null;
         }
     }    
+
+    void PlayDashParticles()
+    {
+        if(controllerScript.isDashing)
+        {
+            if (controllerScript.x < 0)
+            {
+                leftDashParticles.Play();
+            }
+            if(controllerScript.x>0)
+            {
+                RightDashParticles.Play();
+            }
+            if(controllerScript.z>0)
+            {
+                forwardDashParticles.Play();
+            }
+            if(controllerScript.z<0)
+            {
+                backwardDashParticles.Play();
+            }
+        }
+    }
 }
